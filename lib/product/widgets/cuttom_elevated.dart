@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:rotation_app/product/util/constants/colors.dart';
 
 class CustomElevated extends StatelessWidget {
   final Function() onPressed;
   final String label;
-  final Icon icon;
-  final Color backgroundColor;
+  final Icon? icon;
+  final Color? backgroundColor;
   const CustomElevated({
     super.key,
     required this.onPressed,
     required this.label,
-    required this.icon,
-    required this.backgroundColor,
+    this.icon,
+    this.backgroundColor = ColorData.eyeBlue,
   });
 
   @override
@@ -21,7 +22,12 @@ class CustomElevated extends StatelessWidget {
       ),
       onPressed: onPressed,
       icon: icon,
-      label: Text(label),
+      label: Text(
+        label,
+        style: const TextStyle(
+          color: ColorData.white,
+        ),
+      ),
     );
   }
 }

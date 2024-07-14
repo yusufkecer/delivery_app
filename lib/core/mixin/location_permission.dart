@@ -11,6 +11,11 @@ mixin PermissionMixin<T extends StatefulWidget> on State<T> {
   }
 
   Future<void> requestPermission() async {
-    permissionStatus = await permissionType.permission.request();
+    await checkPermission();
+    if (permissionStatus != PermissionStatus.granted) {
+      permissionStatus = await permissionType.permission.request();
+    } else {
+      permissionStatus = PermissionStatus.granted;
+    }
   }
 }

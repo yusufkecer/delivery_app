@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 @immutable
 final class ColorData {
-  static const int tertiaryColor = 0xFF424874;
-  static const int secondaryColor = 0xFFA6B1E1;
-  static const int primaryColor = 0xFFDCD6F7;
-  static const int quaternaryColor = 0xFFF4EEFF;
-  static const int quinaryColor = 0xFFE8DAEF;
-  static const int senaryColor = 0xFFD2B4DE;
-  static const int septenaryColor = 0xFFA9CCE3;
+  static const Color ocean = Color(0xFF77E4C8);
+  static const Color riverBlue = Color(0xFF36C2CE);
+  static const Color eyeBlue = Color(0xFF478CCF);
+  static const Color deepPurple = Color(0xFF4535C1);
+  //white
+  static const Color white = Color(0xFFFFFFFF);
 }

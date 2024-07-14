@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 final class GlobalKeyManager {
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> key = GlobalKey<NavigatorState>();
   static final GlobalKeyManager _instance = GlobalKeyManager._internal();
   static GlobalKeyManager get instance => _instance;
 
