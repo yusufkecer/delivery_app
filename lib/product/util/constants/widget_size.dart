@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 @immutable
-class WidgetSizes {
+final class WidgetSizes {
   const WidgetSizes._();
 
   static const double zero = 0;

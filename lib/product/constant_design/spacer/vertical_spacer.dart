@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rotation_app/product/util/size/widget_size.dart';
+import 'package:rotation_app/product/util/constants/widget_size.dart';
 
 /// Returns a [SizedBox] with the given [height].
 final class VerticalSpace extends SizedBox {

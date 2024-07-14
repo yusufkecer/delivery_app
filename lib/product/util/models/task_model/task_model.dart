@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:rotation_app/product/models/base_model.dart';
-part 'location_model.g.dart';
+import 'package:rotation_app/product/util/models/base_model.dart';
+part 'task_model.g.dart';
 
 @JsonSerializable()
-final class TaskModel implements IdModel {
+final class Task implements IdModel {
   @override
   final String? id;
   final double? lat;
@@ -12,7 +12,7 @@ final class TaskModel implements IdModel {
   final String? city;
   final String? createdAt;
 
-  const TaskModel({
+  const Task({
     this.id,
     this.lat,
     this.lng,
@@ -21,6 +21,6 @@ final class TaskModel implements IdModel {
     this.createdAt,
   });
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) => _$LocationModelFromJson(json);
+  factory Task.fromJson(Map<String, dynamic> json) => _$LocationModelFromJson(json);
   Map<String, dynamic> toJson() => _$LocationModelToJson(this);
 }

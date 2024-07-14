@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'location_model.dart';
+part of 'task_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TaskModel _$LocationModelFromJson(Map<String, dynamic> json) => TaskModel(
+Task _$LocationModelFromJson(Map<String, dynamic> json) => Task(
       id: json['id'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
       lng: (json['lng'] as num?)?.toDouble(),
@@ -15,7 +15,7 @@ TaskModel _$LocationModelFromJson(Map<String, dynamic> json) => TaskModel(
       createdAt: json['createdAt'] as String?,
     );
 
-Map<String, dynamic> _$LocationModelToJson(TaskModel instance) => <String, dynamic>{
+Map<String, dynamic> _$LocationModelToJson(Task instance) => <String, dynamic>{
       'id': instance.id,
       'lat': instance.lat,
       'lng': instance.lng,

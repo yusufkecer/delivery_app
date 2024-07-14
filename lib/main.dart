@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rotation_app/core/constants/string_data/string_data.dart';
-import 'package:rotation_app/core/key.dart';
+import 'package:rotation_app/product/util/constants/string_data.dart';
+import 'package:rotation_app/core/global/key.dart';
 import 'package:rotation_app/features/home/home_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

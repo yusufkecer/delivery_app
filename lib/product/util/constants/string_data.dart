@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+@immutable
 final class StringData {
   static const String appTitle = 'RotationApp';
   static const String homePageTitle = 'Flutter Demo Home Page';
