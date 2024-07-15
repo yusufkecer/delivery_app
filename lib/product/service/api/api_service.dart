@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:logger/logger.dart';
 import 'package:rotation_app/product/service/api/api_url.dart';
 import 'package:rotation_app/product/service/api/base_service.dart';
 
@@ -17,13 +20,22 @@ class ApiService implements BaseService {
     }
   }
 
-  @override
-  Future<void> get(String endPoint) async {
-    Uri url = Uri.parse(base + endPoint);
-    final response = await http.get(url);
-    if (response.statusCode == 200) {
-      print('get');
-    } else {
+  Future<List> get(String endPoint) async {
+    try {
+      Uri url = Uri.parse(base + endPoint);
+      // Logger().w(url);
+
+      var response = await http.get(url);
+      return jsonDecode(response.body);
+      // if (response.statusCode == 200) {
+      //   List data = jsonDecode(response.body);
+      //   return data;
+      // } else {
+      //   throw Exception('Failed to get');
+      // }
+    } catch (e) {
+      print("error");
+      Logger().e(e);
       throw Exception('Failed to get');
     }
   }

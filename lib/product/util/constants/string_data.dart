@@ -12,4 +12,25 @@ final class StringData {
   static const String generalError = 'Bir hata oluştu. Lütfen tekrar deneyin.';
 
   static const String success = 'Başarılı';
+
+  static const String myTasks = 'Görevlerim';
+
+  static const String taskList = 'Görev Listesi';
+
+  static const String situation = 'Durum';
+
+  static const String taskMap = 'Görev Haritası';
+
+  static const String completed = 'Tamamlandı';
+  //on progress
+  static const String onProgress = 'Devam Ediyor';
+
+  static const String notStarted = 'Başlamadı';
+  static const String taskDetail = 'Detay';
+
+  //yol tarifi
+  static const String navigation = 'Yol Tarifi';
+
+  static const String map = 'Harita';
+  static const String tasks = 'Görevler';
 }
