@@ -19,7 +19,7 @@ class MyLoading extends StatelessWidget {
 }
 
 extension ShowLoading on MyLoading {
-  void showLoading<T>() {
+  void show<T>() {
     BuildContext? context = GlobalKeyManager.instance.key.currentContext;
     if (context == null) {
       throw Exception('Context is null');
@@ -30,5 +30,13 @@ extension ShowLoading on MyLoading {
         return this;
       },
     );
+  }
+
+  void hide<T>() {
+    BuildContext? context = GlobalKeyManager.instance.key.currentContext;
+    if (context == null) {
+      throw Exception('Context is null');
+    }
+    Navigator.of(context).pop<T>(null);
   }
 }

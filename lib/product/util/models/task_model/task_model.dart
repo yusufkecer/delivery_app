@@ -1,24 +1,37 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rotation_app/core/enum/task_status.dart';
 import 'package:rotation_app/product/util/models/base_model.dart';
 part 'task_model.g.dart';
 
 @JsonSerializable()
-final class Task implements IdModel {
+class Task implements IdModel {
   @override
   final String? id;
   final double? lat;
   final double? lng;
   final String? address;
   final String? city;
-  final String? createdAt;
+  final String? startAt;
+  final bool? isCompleted;
+  final String? completeAt;
+  final String? title;
+  final String? description;
+  final double? distance;
+  late TaskStatus taskStatus;
 
-  const Task({
+  Task({
     this.id,
     this.lat,
     this.lng,
     this.address,
     this.city,
-    this.createdAt,
+    this.startAt,
+    this.isCompleted,
+    this.completeAt,
+    this.title,
+    this.description,
+    this.distance,
+    this.taskStatus = TaskStatus.notStarted,
   });
 
   factory Task.fromJson(Map<String, dynamic> json) => _$LocationModelFromJson(json);
