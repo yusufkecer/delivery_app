@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
+import 'package:rotation_app/core/global/auto_route.dart';
+import 'package:rotation_app/product/router/app_router.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
-import 'package:rotation_app/core/global/key.dart';
-import 'package:rotation_app/features/home/home_view.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
@@ -15,9 +16,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    AppRouter router = RoutingSettings.instance.route;
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      navigatorKey: GlobalKeyManager.instance.key,
+      // navigatorKey: GlobalKeyManager.instance.key,
+      routerDelegate: router.delegate(),
+      routerConfig: router.config(),
       title: StringData.appTitle,
       theme: ThemeData(
         cardTheme: const CardTheme(
@@ -36,7 +40,6 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const Home(),
     );
   }
 }

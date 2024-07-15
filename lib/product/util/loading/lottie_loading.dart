@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rotation_app/core/extension/key_extension.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/core/global/key.dart';
+import 'package:rotation_app/core/global/auto_route.dart';
 import 'package:rotation_app/product/util/constants/image_path.dart';
 
 class MyLoading extends StatelessWidget {
@@ -20,7 +21,7 @@ class MyLoading extends StatelessWidget {
 
 extension ShowLoading on MyLoading {
   void show<T>() {
-    BuildContext? context = GlobalKeyManager.instance.key.currentContext;
+    BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
       throw Exception('Context is null');
     }
@@ -33,7 +34,7 @@ extension ShowLoading on MyLoading {
   }
 
   void hide<T>() {
-    BuildContext? context = GlobalKeyManager.instance.key.currentContext;
+    BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
       throw Exception('Context is null');
     }

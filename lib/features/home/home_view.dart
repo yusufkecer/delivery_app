@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/enum/task_status.dart';
@@ -10,11 +11,12 @@ import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/loading/lottie_loading.dart';
 
-class Home extends ConsumerStatefulWidget {
-  const Home({super.key});
+@RoutePage()
+class HomeScreen extends ConsumerStatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  ConsumerState<Home> createState() => _HomeState();
+  ConsumerState<HomeScreen> createState() => _HomeState();
 }
 
 class _HomeState extends HomeModel {
@@ -31,7 +33,7 @@ class _HomeState extends HomeModel {
           body: TabBarView(
             children: [
               taskBuilder(),
-              SizedBox(),
+              const SizedBox(),
             ],
           )),
     );

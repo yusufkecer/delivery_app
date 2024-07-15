@@ -9,7 +9,7 @@ import 'package:rotation_app/product/util/dialog/dialog.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'home_view.dart';
 
-abstract class HomeModel extends ConsumerState<Home> with PermissionMixin, DialogUtil {
+abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin, DialogUtil {
   TaskNotifier? task;
   Logger logger = Logger();
   List<Task> taskList = [];
