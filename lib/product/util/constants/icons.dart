@@ -12,4 +12,6 @@ final class IconsData {
   //detail
   static const IconData details = Icons.developer_board;
   static const IconData map = Icons.map;
+  //marker
+  static const IconData markerIcon = Icons.location_on;
 }
