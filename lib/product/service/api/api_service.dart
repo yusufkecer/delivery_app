@@ -20,6 +20,7 @@ class ApiService implements BaseService {
     }
   }
 
+  @override
   Future<List> get(String endPoint) async {
     try {
       Uri url = Uri.parse(base + endPoint);

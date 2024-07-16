@@ -1,13 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:rotation_app/core/extension/key_extension.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/core/global/key.dart';
+import 'package:rotation_app/core/global/auto_route.dart';
+
 import 'package:rotation_app/product/util/constants/image_path.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/dialog/dialog_view.dart';
 
 mixin DialogUtil {
   void showErrorDialog(String message) {
-    BuildContext? context = GlobalKeyManager.instance.key.currentContext;
+    BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
       throw Exception('Context is null');
     }
@@ -26,7 +29,7 @@ mixin DialogUtil {
   }
 
   void showGeneralError() {
-    BuildContext? context = GlobalKeyManager.instance.key.currentContext;
+    BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
       throw Exception('Context is null');
     }
@@ -45,7 +48,7 @@ mixin DialogUtil {
   }
 
   void showSuccessDialog(String message) {
-    BuildContext? context = GlobalKeyManager.instance.key.currentContext;
+    BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
       throw Exception('Context is null');
     }
@@ -64,7 +67,7 @@ mixin DialogUtil {
   }
 
   void pop() {
-    BuildContext? context = GlobalKeyManager.instance.key.currentContext;
-    Navigator.of(context!).pop();
+    BuildContext? context = RoutingSettings.instance.currentContext;
+    context?.maybePop();
   }
 }
