@@ -14,7 +14,7 @@ class ApiService implements BaseService {
     Uri url = Uri.parse(base + endPoint);
     final response = await http.delete(url);
     if (response.statusCode == 200) {
-      print(' deleted');
+      Logger().i('deleted');
     } else {
       throw Exception('Failed to delete ');
     }
@@ -35,8 +35,7 @@ class ApiService implements BaseService {
       //   throw Exception('Failed to get');
       // }
     } catch (e) {
-      print("error");
-      Logger().e(e);
+      Logger().e("Error $e");
       throw Exception('Failed to get');
     }
   }
@@ -46,7 +45,7 @@ class ApiService implements BaseService {
     Uri url = Uri.parse(base + endPoint);
     final response = await http.put(url, body: body);
     if (response.statusCode == 200) {
-      print('updated');
+      Logger().i('updated');
     } else {
       throw Exception('Failed to update');
     }
@@ -57,7 +56,7 @@ class ApiService implements BaseService {
     Uri url = Uri.parse(base + endPoint);
     final response = await http.post(url, body: body);
     if (response.statusCode == 200) {
-      print('created');
+      Logger().i('created');
     } else {
       throw Exception('Failed to create');
     }

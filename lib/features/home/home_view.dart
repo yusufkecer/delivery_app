@@ -7,6 +7,7 @@ import 'package:rotation_app/core/extension/string_extension.dart';
 import 'package:rotation_app/core/provider/base_notifier.dart';
 import 'package:rotation_app/features/home/home_view_model.dart';
 import 'package:rotation_app/features/home/widgets/card.dart';
+import 'package:rotation_app/features/home/widgets/flutter_map.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/loading/lottie_loading.dart';
@@ -26,16 +27,24 @@ class _HomeState extends HomeModel {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text(StringData.myTasks),
-            bottom: tabbar(context),
-          ),
-          body: TabBarView(
-            children: [
-              taskBuilder(),
-              const SizedBox(),
-            ],
-          )),
+          body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              title: const Text(StringData.myTasks),
+              bottom: tabbar(context),
+            ),
+          ];
+        },
+        body: TabBarView(
+          children: [
+            taskBuilder(),
+            const CustomFlutterMap(),
+          ],
+        ),
+      )),
     );
   }
 

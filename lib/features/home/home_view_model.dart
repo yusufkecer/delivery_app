@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
-import 'package:rotation_app/core/mixin/location_permission.dart';
+import 'package:rotation_app/core/mixin/permission.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
@@ -11,7 +10,7 @@ import 'home_view.dart';
 
 abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin, DialogUtil {
   TaskNotifier? task;
-  Logger logger = Logger();
+
   List<Task> taskList = [];
   ValueNotifier<bool> isLoading = ValueNotifier(false);
 
