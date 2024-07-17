@@ -9,9 +9,9 @@ final class IconsData {
   static const IconData navigation = Icons.navigation;
 
   static const IconData distance = Icons.fire_truck;
-  //detail
+
   static const IconData details = Icons.developer_board;
   static const IconData map = Icons.map;
-  //marker
+  static const IconData phone = Icons.phone;
   static const IconData markerIcon = Icons.location_on;
 }

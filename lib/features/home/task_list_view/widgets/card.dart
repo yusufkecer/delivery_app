@@ -17,6 +17,8 @@ class CardTask extends StatelessWidget {
   final String distance;
   final String address;
   final Task task;
+  final void Function() navigationPressed;
+  final void Function() detailPressed;
 
   const CardTask({
     super.key,
@@ -25,10 +27,13 @@ class CardTask extends StatelessWidget {
     required this.distance,
     required this.address,
     required this.task,
+    required this.navigationPressed,
+    required this.detailPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    String navigationButtonName = task.taskStatus == TaskStatus.inProgress ? StringData.navigation : StringData.start;
     return Card(
       child: Column(
         children: [
@@ -41,16 +46,16 @@ class CardTask extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CustomElevated(
-                label: StringData.navigation,
+                label: navigationButtonName,
                 icon: IconsData.navigation,
                 backgroundColor: ColorData.ocean,
-                onPressed: () {},
+                onPressed: navigationPressed,
               ),
               CustomElevated(
                 label: StringData.taskDetail,
                 icon: IconsData.details,
                 backgroundColor: ColorData.riverBlue,
-                onPressed: () {},
+                onPressed: detailPressed,
               ),
             ],
           ),
