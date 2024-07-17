@@ -6,6 +6,7 @@ import 'package:rotation_app/product/constant_design/spacer/vertical_spacer.dart
 import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
+import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/cuttom_elevated.dart';
 import 'package:rotation_app/product/widgets/info_icon.dart';
 import 'package:rotation_app/product/widgets/text_rich.dart';
@@ -15,7 +16,7 @@ class CardTask extends StatelessWidget {
   final String? description;
   final String distance;
   final String address;
-  final TaskStatus taskStatus;
+  final Task task;
 
   const CardTask({
     super.key,
@@ -23,7 +24,7 @@ class CardTask extends StatelessWidget {
     this.description,
     required this.distance,
     required this.address,
-    required this.taskStatus,
+    required this.task,
   });
 
   @override
@@ -74,7 +75,7 @@ class CardTask extends StatelessWidget {
         const VerticalSpace.xxSmall(),
         InfoIcon(text: distance, icon: IconsData.distance, iconColor: ColorData.ocean),
         const VerticalSpace.xxSmall(),
-        situation(taskStatus),
+        situation(task.taskStatus),
       ],
     );
   }

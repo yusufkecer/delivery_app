@@ -30,6 +30,8 @@ final class StringData {
 
   //yol tarifi
   static const String navigation = 'Yol Tarifi';
+  //start
+  static const String start = 'Başla';
 
   static const String map = 'Harita';
   static const String tasks = 'Görevler';
