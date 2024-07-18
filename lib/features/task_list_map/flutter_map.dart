@@ -94,15 +94,17 @@ class _CustomFlutterMapState extends FlutterMapModel {
 
   void setMarkers() async {
     for (var task in tasks!) {
+      double lat = double.tryParse(task.lat.toString())!;
+      double lng = double.tryParse(task.lng.toString())!;
       markers.add(
         Marker(
           rotate: true,
           width: 80.0,
           height: 80.0,
-          point: LatLng(task.lat!, task.lng!),
+          point: LatLng(lat, lng),
           child: GestureDetector(
             onTap: () {
-              mapController.move(LatLng(task.lat!, task.lng!), 3);
+              mapController.move(LatLng(lat, lng), 3);
               selectedTask = task;
               infoWindowVisible.value = true;
             },

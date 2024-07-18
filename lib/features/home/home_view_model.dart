@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rotation_app/core/mixin/launch_mixin.dart';
 import 'package:rotation_app/core/mixin/permission.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/icons.dart';
@@ -9,7 +8,7 @@ import 'package:rotation_app/product/util/dialog/dialog.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'home_view.dart';
 
-abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin, DialogUtil, LaunchMixin {
+abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin, DialogUtil {
   TaskNotifier? task;
 
   List<Task> taskList = [];
@@ -54,9 +53,5 @@ abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin,
     }
     taskList = task!.taskList;
     logger.i('Tasks are fetched');
-  }
-
-  void callButton() async {
-    launchPhone("05555555555", "tel");
   }
 }

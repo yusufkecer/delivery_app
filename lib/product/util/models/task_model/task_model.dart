@@ -7,11 +7,11 @@ part 'task_model.g.dart';
 class Task implements IdModel {
   @override
   final String? id;
-  final double? lat;
-  final double? lng;
+  final String? lat;
+  final String? lng;
   final String? address;
   final String? city;
-  final String? startAt;
+  String? startAt;
   final bool? isCompleted;
   final String? completeAt;
   final String? title;

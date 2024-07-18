@@ -1,20 +1,23 @@
 import 'package:url_launcher/url_launcher.dart';
 import 'package:logger/logger.dart';
 
-//!fix this
 mixin LaunchMixin {
-  void launchPhone(String scheme, path) {
+  void launchPhone(String scheme, String path) async {
     Logger logger = Logger();
     logger.d("scheme: $scheme");
     logger.d("path: $path");
+
     Uri phoneLaunch = Uri(
-      scheme: "55555",
+      scheme: scheme,
       path: path,
-      queryParameters: <String, String>{
-        'body': Uri.encodeComponent('Example Subject & Symbols are allowed!'),
-      },
     );
+
     logger.d("uri: $phoneLaunch");
-    launchUrl(phoneLaunch);
+
+    if (await canLaunchUrl(phoneLaunch)) {
+      await launchUrl(phoneLaunch);
+    } else {
+      logger.e("Could not launch $phoneLaunch");
+    }
   }
 }
