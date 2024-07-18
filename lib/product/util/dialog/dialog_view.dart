@@ -18,7 +18,7 @@ class BasicDialog extends StatelessWidget {
     required this.description,
     required this.buttonText,
     required this.onPressed,
-    this.dissmissable = false,
+    this.dissmissable = true,
   });
 
   @override

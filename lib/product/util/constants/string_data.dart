@@ -22,15 +22,18 @@ final class StringData {
   static const String taskMap = 'Görev Haritası';
 
   static const String completed = 'Tamamlandı';
-  //on progress
   static const String onProgress = 'Devam Ediyor';
 
   static const String notStarted = 'Başlamadı';
   static const String taskDetail = 'Detay';
 
-  //yol tarifi
   static const String navigation = 'Yol Tarifi';
+  static const String start = 'Başla';
 
   static const String map = 'Harita';
   static const String tasks = 'Görevler';
+
+  static const activeTaskError = 'Aktif bir göreviniz bulunmaktadır.';
+
+  static const String callManager = "Yöneticiyi Ara";
 }

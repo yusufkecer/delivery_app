@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rotation_app/core/enum/task_status.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/core/extension/string_extension.dart';
 import 'package:rotation_app/core/provider/base_notifier.dart';
 import 'package:rotation_app/features/home/home_view_model.dart';
-import 'package:rotation_app/features/home/widgets/card.dart';
-import 'package:rotation_app/features/home/widgets/flutter_map.dart';
+import 'package:rotation_app/features/home/task_list_view/task_list.dart';
+import 'package:rotation_app/features/task_list_map/flutter_map.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
+import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/loading/lottie_loading.dart';
 
@@ -27,24 +26,30 @@ class _HomeState extends HomeModel {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              pinned: true,
-              floating: true,
-              title: const Text(StringData.myTasks),
-              bottom: tabbar(context),
-            ),
-          ];
-        },
-        body: TabBarView(
-          children: [
-            taskBuilder(),
-            const CustomFlutterMap(),
-          ],
+        floatingActionButton: FloatingActionButton(
+          onPressed: callButton,
+          tooltip: StringData.callManager,
+          child: const Icon(IconsData.phone),
         ),
-      )),
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                pinned: true,
+                floating: true,
+                title: const Text(StringData.myTasks),
+                bottom: tabbar(context),
+              ),
+            ];
+          },
+          body: TabBarView(
+            children: [
+              taskBuilder(),
+              const CustomFlutterMap(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -52,7 +57,7 @@ class _HomeState extends HomeModel {
     return ValueListenableBuilder(
         valueListenable: isLoading,
         builder: (context, value, child) {
-          return !value ? taskListWidget() : const MyLoading();
+          return !value ? const TaskList() : const MyLoading();
         });
   }
 
@@ -63,26 +68,6 @@ class _HomeState extends HomeModel {
         color: ColorData.white,
       ),
       tabs: tabsList,
-    );
-  }
-
-  ListView taskListWidget() {
-    return ListView.builder(
-      itemCount: taskList.length,
-      itemBuilder: (context, index) {
-        String? title = taskList[index].title;
-        String? description = taskList[index].description;
-        String? distance = taskList[index].distance.toString().kmOrM;
-        TaskStatus? taskStatus = taskList[index].taskStatus;
-        String address = '${taskList[index].city} - ${taskList[index].address}';
-        return CardTask(
-          title: title,
-          description: description,
-          distance: distance,
-          address: address,
-          taskStatus: taskStatus,
-        );
-      },
     );
   }
 }
