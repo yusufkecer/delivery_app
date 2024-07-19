@@ -29,11 +29,15 @@ final class StringData {
 
   static const String navigation = 'Yol Tarifi';
   static const String start = 'Başla';
-
+  static const String startAt = 'Başlangıç Tarihi';
   static const String map = 'Harita';
   static const String tasks = 'Görevler';
 
   static const activeTaskError = 'Aktif bir göreviniz bulunmaktadır.';
 
   static const String callManager = "Yöneticiyi Ara";
+
+  static const String taskDetailTitle = 'Görev Detayı';
+
+  static const String address = 'Adres';
 }

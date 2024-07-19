@@ -11,14 +11,14 @@ class Task implements IdModel {
   final String? lng;
   final String? address;
   final String? city;
-  String? startAt;
+
   final bool? isCompleted;
-  final String? completeAt;
+
   final String? title;
   final String? description;
   final double? distance;
   late TaskStatus taskStatus;
-
+  String? startAt;
   Task({
     this.id,
     this.lat,
@@ -27,13 +27,11 @@ class Task implements IdModel {
     this.city,
     this.startAt,
     this.isCompleted,
-    this.completeAt,
     this.title,
     this.description,
     this.distance,
-    this.taskStatus = TaskStatus.notStarted,
   });
 
-  factory Task.fromJson(Map<String, dynamic> json) => _$LocationModelFromJson(json);
-  Map<String, dynamic> toJson() => _$LocationModelToJson(this);
+  factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
+  Map<String, dynamic> toJson() => _$TaskToJson(this);
 }

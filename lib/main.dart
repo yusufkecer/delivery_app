@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           seedColor: ColorData.eyeBlue,
         ),
         appBarTheme: AppBarTheme(
+          iconTheme: context.iconTheme.copyWith(color: ColorData.white),
           centerTitle: true,
           backgroundColor: ColorData.eyeBlue,
           titleTextStyle: context.textTheme.headlineSmall?.copyWith(

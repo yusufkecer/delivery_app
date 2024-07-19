@@ -42,6 +42,8 @@ class CardTask extends StatelessWidget {
             trailing: const Icon(IconsData.forward),
           ),
           const VerticalSpace.xxxSmall(),
+          situation(task.taskStatus),
+          const VerticalSpace.xxSmall(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -79,8 +81,6 @@ class CardTask extends StatelessWidget {
         InfoIcon(text: description ?? "", icon: IconsData.description, iconColor: ColorData.eyeBlue),
         const VerticalSpace.xxSmall(),
         InfoIcon(text: distance, icon: IconsData.distance, iconColor: ColorData.ocean),
-        const VerticalSpace.xxSmall(),
-        situation(task.taskStatus),
       ],
     );
   }
