@@ -23,7 +23,6 @@ mixin PermissionMixin<T extends StatefulWidget> on State<T> {
       logger.i("permission denied");
       await requestPermission();
     } else if (permissionStatus == PermissionStatus.granted) {
-      logger.i("permission granted");
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       logger.i("Location--> $position");
       return position;
@@ -36,7 +35,9 @@ mixin PermissionMixin<T extends StatefulWidget> on State<T> {
     if (permissionStatus != PermissionStatus.granted) {
       permissionStatus = await permissionType.permission.request();
     }
-    await getLocation();
+    if (permissionStatus == PermissionStatus.granted) {
+      await getLocation();
+    }
   }
 
   Future<void> checkPermission() async {

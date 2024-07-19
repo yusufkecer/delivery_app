@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 
@@ -23,7 +24,6 @@ class CustomElevated extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
-        fixedSize: const Size(130, 45),
         backgroundColor: backgroundColor,
       ),
       onPressed: onPressed,
@@ -37,6 +37,29 @@ class CustomElevated extends StatelessWidget {
         label,
         style: context.textTheme.titleSmall!.copyWith(color: textColor),
       ),
+    );
+  }
+}
+
+class DynmicButtonSize extends StatelessWidget {
+  final double? height;
+  final double? width;
+  final Widget? child;
+  const DynmicButtonSize({
+    super.key,
+    this.height,
+    this.width,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    double height = this.height ?? context.height * .07;
+    double width = this.width ?? context.width * .4;
+    return SizedBox(
+      height: height,
+      width: width,
+      child: child,
     );
   }
 }

@@ -24,11 +24,11 @@ final class StringData {
   static const String completed = 'Tamamlandı';
   static const String onProgress = 'Devam Ediyor';
 
-  static const String notStarted = 'Başlamadı';
+  static const String notStarted = 'Başlanmadı';
   static const String taskDetail = 'Detay';
 
   static const String navigation = 'Yol Tarifi';
-  static const String start = 'Başla';
+  static const String startTask = 'Göreve Başla';
   static const String startAt = 'Başlangıç Tarihi';
   static const String map = 'Harita';
   static const String tasks = 'Görevler';
@@ -40,4 +40,6 @@ final class StringData {
   static const String taskDetailTitle = 'Görev Detayı';
 
   static const String address = 'Adres';
+
+  static const String distance = 'Mesafe';
 }

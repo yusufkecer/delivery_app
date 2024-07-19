@@ -8,9 +8,9 @@ import 'package:rotation_app/product/util/dialog/dialog.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'home_view.dart';
 
-abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin, DialogUtil {
+abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin, DialogUtil, TickerProviderStateMixin {
   TaskNotifier? task;
-
+  TabController? tabController;
   List<Task> taskList = [];
   ValueNotifier<bool> isLoading = ValueNotifier(false);
 
@@ -31,9 +31,12 @@ abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin,
 
   @override
   void initState() {
+    tabController = TabController(length: tabsList.length, vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await requestPermission();
+      isLoading.value = true;
       await getTasks();
+      await requestPermission();
+      isLoading.value = false;
     });
 
     super.initState();
@@ -44,14 +47,19 @@ abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin,
       showGeneralError();
       return;
     }
-    isLoading.value = true;
+
     await task!.getTask();
-    isLoading.value = false;
+
     if (task!.taskList.isEmpty) {
       showGeneralError();
       return;
     }
     taskList = task!.taskList;
+
     logger.i('Tasks are fetched');
+  }
+
+  bool checkData() {
+    return isLoading.value && taskList.isEmpty;
   }
 }

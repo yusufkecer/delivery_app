@@ -9,6 +9,7 @@ import 'package:rotation_app/features/task_list_map/flutter_map.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/loading/lottie_loading.dart';
+import 'package:rotation_app/product/widgets/error_widget.dart';
 
 @RoutePage()
 class HomeScreen extends ConsumerStatefulWidget {
@@ -22,27 +23,27 @@ class _HomeState extends HomeModel {
   @override
   Widget build(BuildContext context) {
     task = ref.watch(NotifierManager.instance.task.notifier);
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverAppBar(
-                pinned: true,
-                floating: true,
-                title: const Text(StringData.myTasks),
-                bottom: tabbar(context),
-              ),
-            ];
-          },
-          body: TabBarView(
-            children: [
-              taskBuilder(),
-              const CustomFlutterMap(),
-            ],
-          ),
-        ),
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              title: const Text(StringData.myTasks),
+              bottom: tabbar(context),
+            ),
+          ];
+        },
+        body: !checkData()
+            ? TabBarView(
+                controller: tabController,
+                children: [
+                  taskBuilder(),
+                  const CustomFlutterMap(),
+                ],
+              )
+            : const FaultWidget(),
       ),
     );
   }
@@ -57,6 +58,7 @@ class _HomeState extends HomeModel {
 
   TabBar tabbar(BuildContext context) {
     return TabBar(
+      controller: tabController,
       indicatorColor: ColorData.white,
       labelStyle: context.textTheme.titleMedium?.copyWith(
         color: ColorData.white,

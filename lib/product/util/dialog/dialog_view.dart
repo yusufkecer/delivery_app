@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/constant_design/spacer/vertical_spacer.dart';
+import 'package:rotation_app/product/app_constant/spacer/vertical_spacer.dart';
 import 'package:rotation_app/product/widgets/cuttom_elevated.dart';
 
 class BasicDialog extends StatelessWidget {

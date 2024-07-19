@@ -42,9 +42,11 @@ class _TaskListState extends TaskListModel {
             address: address,
             task: task,
             navigationPressed: () {
-              navigationPressed(index);
+              navigationPressed(taskList[index]);
             },
-            detailPressed: detailPressed,
+            detailPressed: () {
+              detailPressed(taskList[index]);
+            },
           );
         },
       ),
