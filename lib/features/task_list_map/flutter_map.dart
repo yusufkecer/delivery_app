@@ -38,7 +38,7 @@ class _CustomFlutterMapState extends FlutterMapModel {
   FlutterMap flutterMap(val) {
     logger.i(tasks?[0]);
     return FlutterMap(
-      mapController: mapController,
+      mapController: animatedMapController?.mapController,
       options: MapOptions(
         onTap: (tapPosition, point) {
           infoWindowVisible.value = false;
