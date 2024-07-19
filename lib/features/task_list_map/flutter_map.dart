@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/core/provider/base_notifier.dart';
 import 'package:rotation_app/features/task_list_map/flutter_map_model.dart';
@@ -11,10 +9,7 @@ import 'package:rotation_app/product/constant_design/padding.dart';
 import 'package:rotation_app/product/constant_design/spacer/vertical_spacer.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/service/api/api_url.dart';
-import 'package:rotation_app/product/util/constants/colors.dart';
-import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
-
 import 'package:rotation_app/product/util/loading/lottie_loading.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/info_window.dart';
@@ -28,26 +23,6 @@ class CustomFlutterMap extends ConsumerStatefulWidget {
 }
 
 class _CustomFlutterMapState extends FlutterMapModel {
-  final ValueNotifier<bool> isMapLoading = ValueNotifier(true);
-
-  List<Marker> markers = [];
-
-  List<Task>? tasks;
-  LatLng currentLocation = const LatLng(0.0, 0.0);
-  MapController mapController = MapController();
-
-  ValueNotifier<bool> infoWindowVisible = ValueNotifier(false);
-  Task? selectedTask;
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      addCurrentLocation();
-      setMarkers();
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     TaskNotifier? task = ref.watch(NotifierManager.instance.task.notifier);
@@ -92,33 +67,6 @@ class _CustomFlutterMapState extends FlutterMapModel {
     );
   }
 
-  void setMarkers() async {
-    for (var task in tasks!) {
-      double lat = double.tryParse(task.lat.toString())!;
-      double lng = double.tryParse(task.lng.toString())!;
-      markers.add(
-        Marker(
-          rotate: true,
-          width: 80.0,
-          height: 80.0,
-          point: LatLng(lat, lng),
-          child: GestureDetector(
-            onTap: () {
-              mapController.move(LatLng(lat, lng), 3);
-              selectedTask = task;
-              infoWindowVisible.value = true;
-            },
-            child: const Icon(
-              IconsData.markerIcon,
-              color: ColorData.red,
-              size: 40.0,
-            ),
-          ),
-        ),
-      );
-    }
-  }
-
   Widget taskDetail(Task task) {
     return InfoCard(
       child: Column(
@@ -141,36 +89,11 @@ class _CustomFlutterMapState extends FlutterMapModel {
               minimumSize: Size.zero,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-            onPressed: () {},
+            onPressed: detailPressed,
             child: const Text(StringData.taskDetail),
           ),
         ],
       ),
     );
-  }
-
-  Future<void> addCurrentLocation() async {
-    Position? position = await getLocation();
-
-    if (position != null) {
-      currentLocation = LatLng(position.latitude, position.longitude);
-      isMapLoading.value = false;
-      markers.add(
-        Marker(
-          width: 80.0,
-          height: 80.0,
-          point: LatLng(position.latitude, position.longitude),
-          child: const Icon(
-            IconsData.markerIcon,
-            color: ColorData.green,
-            size: 40.0,
-          ),
-        ),
-      );
-    }
-  }
-
-  void updateCameraPosition() {
-    mapController.move(currentLocation, 3);
   }
 }

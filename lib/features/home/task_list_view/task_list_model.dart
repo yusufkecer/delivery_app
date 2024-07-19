@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:rotation_app/core/enum/task_status.dart';
@@ -8,6 +9,8 @@ import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/dialog/dialog.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
+
+import 'package:rotation_app/product/router/app_router.dart' as router;
 
 abstract class TaskListModel extends ConsumerState<TaskList> with DialogUtil, LaunchMixin {
   List<Task> taskList = [];
@@ -27,7 +30,9 @@ abstract class TaskListModel extends ConsumerState<TaskList> with DialogUtil, La
     checkRespose(status);
   }
 
-  void detailPressed() {}
+  void detailPressed() {
+    context.router.push(router.TaskDetail(task: taskList.first));
+  }
 
   void callButton() async {
     Task task = taskList.first;

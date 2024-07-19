@@ -16,8 +16,7 @@ class TaskNotifier extends StateNotifier<List<Task>> {
 
     Map data = await _taskRepo.update(body, id);
 
-    List<Task> sortTask = state.sortTask;
-    state = [...sortTask];
+    state = [...state.sortTask];
 
     return data;
   }
