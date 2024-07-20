@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
@@ -12,28 +13,33 @@ import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/router/app_router.dart' as router;
 
-abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with PermissionMixin {
+abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with PermissionMixin, TickerProviderStateMixin {
   final ValueNotifier<bool> isMapLoading = ValueNotifier(true);
 
   List<Marker> markers = [];
 
   List<Task>? tasks;
   LatLng currentLocation = const LatLng(0.0, 0.0);
-  MapController mapController = MapController();
 
+  AnimatedMapController? animatedMapController;
   ValueNotifier<bool> infoWindowVisible = ValueNotifier(false);
-  Task? selectedTask;
+  ValueNotifier<Task?> selectedTask = ValueNotifier(null);
 
   @override
   void initState() {
+    animatedMapController = AnimatedMapController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      addCurrentLocation();
-      setMarkers();
+      _addCurrentLocation();
+      _setMarkers();
     });
     super.initState();
   }
 
-  Future<void> addCurrentLocation() async {
+  Future<void> _addCurrentLocation() async {
     Position? position = await getLocation();
 
     if (position != null) {
@@ -54,7 +60,7 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
     }
   }
 
-  void setMarkers() async {
+  void _setMarkers() async {
     for (var task in tasks!) {
       double lat = double.tryParse(task.lat.toString())!;
       double lng = double.tryParse(task.lng.toString())!;
@@ -66,8 +72,9 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
           point: LatLng(lat, lng),
           child: GestureDetector(
             onTap: () {
-              mapController.move(LatLng(lat, lng), 3);
-              selectedTask = task;
+              currentLocation = LatLng(lat, lng);
+              updateCameraPosition();
+              selectedTask.value = task;
               infoWindowVisible.value = true;
             },
             child: const Icon(
@@ -82,10 +89,10 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
   }
 
   void updateCameraPosition() {
-    mapController.move(currentLocation, 3);
+    animatedMapController?.animateTo(dest: currentLocation);
   }
 
-  detailPressed() {
-    context.router.push(router.TaskDetail(task: selectedTask!));
+  void detailPressed() {
+    context.router.push(router.TaskDetail(task: selectedTask.value!));
   }
 }

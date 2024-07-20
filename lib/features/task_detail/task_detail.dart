@@ -1,58 +1,52 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:rotation_app/core/enum/task_status.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/constant_design/padding.dart';
+import 'package:rotation_app/core/provider/base_notifier.dart';
+import 'package:rotation_app/features/task_detail/task_detail_model.dart';
+import 'package:rotation_app/features/task_detail/widgets/detail_list.dart';
+import 'package:rotation_app/product/app_constant/padding.dart';
+import 'package:rotation_app/product/app_constant/spacer/vertical_spacer.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
+import 'package:rotation_app/product/widgets/cuttom_elevated.dart';
 
 @RoutePage()
-class TaskDetail extends StatelessWidget {
+class TaskDetail extends ConsumerStatefulWidget {
   final Task task;
   const TaskDetail({super.key, required this.task});
 
   @override
+  ConsumerState<TaskDetail> createState() => _TaskDetailState();
+}
+
+class _TaskDetailState extends TaskDetailModel {
+  @override
   Widget build(BuildContext context) {
-    String? startAt = task.startAt != null && task.startAt!.isNotEmpty ? task.startAt : "Başlanmadı";
+    taskNotifier = ref.read(NotifierManager.instance.task.notifier);
     return Scaffold(
       appBar: AppBar(
         title: const Text(StringData.taskDetailTitle),
       ),
       body: Padding(
-        padding: const ProjectPadding.allPadding(),
+        padding: const ProjectPadding.allPaddingTen(),
         child: Column(
           children: [
             Card(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const ProjectPadding.allPadding().copyWith(bottom: 0),
-                      child: Text(
-                        task.title ?? "",
-                        style: context.textTheme.titleMedium,
-                      ),
-                    ),
-                    ListTile(
-                      title: const Text(StringData.taskDetail),
-                      subtitle: Text(task.description ?? ""),
-                    ),
-                    ListTile(
-                      title: const Text(StringData.situation),
-                      subtitle: Text(task.taskStatus.value),
-                    ),
-                    ListTile(
-                      title: const Text(StringData.address),
-                      subtitle: Text("${task.city ?? ""} - ${task.address ?? ""}"),
-                    ),
-                    ListTile(
-                      title: const Text(StringData.startAt),
-                      subtitle: Text(startAt ?? ""),
-                    ),
-                  ],
+              child: DetailList(task: widget.task),
+            ),
+            const VerticalSpace.xSmall(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DynmicButtonSize(
+                  width: context.width * 0.9,
+                  child: CustomElevated(
+                    label: buttonText,
+                    onPressed: fun!,
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

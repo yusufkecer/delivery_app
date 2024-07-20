@@ -25,6 +25,7 @@ class TaskNotifier extends StateNotifier<List<Task>> {
     List<Task> taskList = await _taskRepo.get();
 
     state = taskList;
+
     checkTaskStatus();
   }
 
@@ -32,6 +33,7 @@ class TaskNotifier extends StateNotifier<List<Task>> {
     for (var element in state) {
       if (element.taskStatus == TaskStatus.inProgress) {
         ongoingTask = true;
+        break;
       }
     }
   }

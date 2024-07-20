@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:rotation_app/core/enum/task_status.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/constant_design/spacer/vertical_spacer.dart';
+import 'package:rotation_app/product/app_constant/spacer/vertical_spacer.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
@@ -33,37 +33,26 @@ class CardTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String navigationButtonName = task.taskStatus == TaskStatus.inProgress ? StringData.navigation : StringData.start;
+    String navigationButtonName =
+        task.taskStatus == TaskStatus.inProgress ? StringData.navigation : StringData.startTask;
     return Card(
       child: Column(
         children: [
-          ListTile(
-            title: info(context),
-            trailing: const Icon(IconsData.forward),
-          ),
+          baseListTile(context),
           const VerticalSpace.xxxSmall(),
           situation(task.taskStatus),
           const VerticalSpace.xxSmall(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CustomElevated(
-                label: navigationButtonName,
-                icon: IconsData.navigation,
-                backgroundColor: ColorData.ocean,
-                onPressed: navigationPressed,
-              ),
-              CustomElevated(
-                label: StringData.taskDetail,
-                icon: IconsData.details,
-                backgroundColor: ColorData.riverBlue,
-                onPressed: detailPressed,
-              ),
-            ],
-          ),
+          buttons(navigationButtonName),
           const VerticalSpace.xSmall(),
         ],
       ),
+    );
+  }
+
+  ListTile baseListTile(BuildContext context) {
+    return ListTile(
+      title: info(context),
+      trailing: const Icon(IconsData.forward),
     );
   }
 
@@ -98,11 +87,39 @@ class CardTask extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: InfoRich(
-        title: StringData.situation,
-        text: isCompleted.value,
-        color: ColorData.white,
-      ),
+      child: text(isCompleted),
+    );
+  }
+
+  InfoRich text(TaskStatus isCompleted) {
+    return InfoRich(
+      title: StringData.situation,
+      text: isCompleted.value,
+      color: ColorData.white,
+    );
+  }
+
+  Row buttons(String navigationButtonName) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        DynmicButtonSize(
+          child: CustomElevated(
+            label: navigationButtonName,
+            icon: IconsData.navigation,
+            backgroundColor: ColorData.ocean,
+            onPressed: navigationPressed,
+          ),
+        ),
+        DynmicButtonSize(
+          child: CustomElevated(
+            label: StringData.taskDetail,
+            icon: IconsData.details,
+            backgroundColor: ColorData.riverBlue,
+            onPressed: detailPressed,
+          ),
+        ),
+      ],
     );
   }
 }

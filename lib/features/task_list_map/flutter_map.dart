@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/core/provider/base_notifier.dart';
 import 'package:rotation_app/features/task_list_map/flutter_map_model.dart';
-import 'package:rotation_app/product/constant_design/padding.dart';
-import 'package:rotation_app/product/constant_design/spacer/vertical_spacer.dart';
+import 'package:rotation_app/product/app_constant/padding.dart';
+import 'package:rotation_app/product/app_constant/spacer/vertical_spacer.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/service/api/api_url.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
@@ -38,7 +38,7 @@ class _CustomFlutterMapState extends FlutterMapModel {
   FlutterMap flutterMap(val) {
     logger.i(tasks?[0]);
     return FlutterMap(
-      mapController: mapController,
+      mapController: animatedMapController?.mapController,
       options: MapOptions(
         onTap: (tapPosition, point) {
           infoWindowVisible.value = false;
@@ -61,7 +61,7 @@ class _CustomFlutterMapState extends FlutterMapModel {
         ValueListenableBuilder(
             valueListenable: infoWindowVisible,
             builder: (context, value, child) {
-              return selectedTask != null && value ? taskDetail(selectedTask!) : const SizedBox.shrink();
+              return selectedTask.value != null && value ? taskNotifier() : const SizedBox.shrink();
             })
       ],
     );
@@ -94,6 +94,13 @@ class _CustomFlutterMapState extends FlutterMapModel {
           ),
         ],
       ),
+    );
+  }
+
+  ValueListenableBuilder<Task?> taskNotifier() {
+    return ValueListenableBuilder(
+      valueListenable: selectedTask,
+      builder: (context, value, child) => taskDetail(selectedTask.value!),
     );
   }
 }

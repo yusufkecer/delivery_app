@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/constant_design/padding.dart';
-import 'package:rotation_app/product/constant_design/radius.dart';
+import 'package:rotation_app/product/app_constant/padding.dart';
+import 'package:rotation_app/product/app_constant/radius.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 
 class InfoCard extends StatelessWidget {
@@ -16,7 +16,7 @@ class InfoCard extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
-        padding: const ProjectPadding.allPadding().copyWith(bottom: 20.0),
+        padding: const ProjectPadding.allPaddingTen().copyWith(bottom: 20.0),
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: CustomRadius.ten(),

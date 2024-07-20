@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/core/global/auto_route.dart';
+import 'package:rotation_app/product/util/global/auto_route.dart';
 import 'package:rotation_app/product/router/app_router.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';

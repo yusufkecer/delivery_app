@@ -6,4 +6,5 @@ final class AssetPath {
   static const String success = "checked.png";
   static const String error = "error.png";
   static const String delivery = "delivery.json";
+  static const String errorDog = "error_dog.json";
 }
