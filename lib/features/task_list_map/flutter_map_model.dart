@@ -39,6 +39,12 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
     super.initState();
   }
 
+  @override
+  void dispose() {
+    animatedMapController?.dispose();
+    super.dispose();
+  }
+
   Future<void> _addCurrentLocation() async {
     Position? position = await getLocation();
 
