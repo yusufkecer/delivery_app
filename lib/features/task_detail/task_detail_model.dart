@@ -24,7 +24,6 @@ abstract class TaskDetailModel extends ConsumerState<TaskDetail> with DialogUtil
   void openMap() {}
 
   void checkTaskStatus(Task task) {
-    print(task.taskStatus);
     if (task.taskStatus == TaskStatus.inProgress) {
       fun = openMap;
       buttonText = StringData.navigation;

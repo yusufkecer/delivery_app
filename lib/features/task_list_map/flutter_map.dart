@@ -3,7 +3,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/core/provider/base_notifier.dart';
 import 'package:rotation_app/features/task_list_map/flutter_map_model.dart';
 import 'package:rotation_app/product/app_constant/padding.dart';
 import 'package:rotation_app/product/app_constant/spacer/vertical_spacer.dart';
@@ -25,7 +24,7 @@ class CustomFlutterMap extends ConsumerStatefulWidget {
 class _CustomFlutterMapState extends FlutterMapModel {
   @override
   Widget build(BuildContext context) {
-    TaskNotifier? task = ref.watch(NotifierManager.instance.task.notifier);
+    TaskNotifier? task = ref.watch(taskNotifierProvider.notifier);
     tasks = task?.taskList;
 
     return ValueListenableBuilder(
