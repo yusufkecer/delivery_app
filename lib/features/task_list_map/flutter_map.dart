@@ -61,7 +61,7 @@ class _CustomFlutterMapState extends FlutterMapModel {
         ValueListenableBuilder(
             valueListenable: infoWindowVisible,
             builder: (context, value, child) {
-              return selectedTask != null && value ? taskDetail(selectedTask!) : const SizedBox.shrink();
+              return selectedTask.value != null && value ? taskNotifier() : const SizedBox.shrink();
             })
       ],
     );
@@ -94,6 +94,13 @@ class _CustomFlutterMapState extends FlutterMapModel {
           ),
         ],
       ),
+    );
+  }
+
+  ValueListenableBuilder<Task?> taskNotifier() {
+    return ValueListenableBuilder(
+      valueListenable: selectedTask,
+      builder: (context, value, child) => taskDetail(selectedTask.value!),
     );
   }
 }
