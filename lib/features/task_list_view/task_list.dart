@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/features/home/task_list_view/task_list_model.dart';
-import 'package:rotation_app/features/home/task_list_view/widgets/card.dart';
+import 'package:rotation_app/features/task_list_view/task_list_model.dart';
+import 'package:rotation_app/features/task_list_view/widgets/card.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rotation_app/core/enum/permission_type.dart';
+import 'package:rotation_app/core/extension/logger_extension.dart';
 
 mixin PermissionMixin<T extends StatefulWidget> on State<T> {
   PermissionStatus? permissionStatus;
   PermissionType permissionType = PermissionType.location;
-  Logger logger = Logger();
 
   @override
   void initState() {
@@ -20,11 +19,11 @@ mixin PermissionMixin<T extends StatefulWidget> on State<T> {
   Future<Position?> getLocation() async {
     await checkPermission();
     if (permissionStatus == PermissionStatus.denied) {
-      logger.i("permission denied");
+      "permission denied".logInfo;
       await requestPermission();
     } else if (permissionStatus == PermissionStatus.granted) {
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      logger.i("Location--> $position");
+      "position: $position".logInfo;
       return position;
     }
     return null;

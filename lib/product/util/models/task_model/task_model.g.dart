@@ -17,6 +17,9 @@ Task _$TaskFromJson(Map<String, dynamic> json) => Task(
       title: json['title'] as String?,
       description: json['description'] as String?,
       distance: (json['distance'] as num?)?.toDouble(),
+      taskStatus:
+          $enumDecodeNullable(_$TaskStatusEnumMap, json['taskStatus']) ??
+              TaskStatus.notStarted,
     );
 
 Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
@@ -29,5 +32,12 @@ Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'distance': instance.distance,
+      'taskStatus': _$TaskStatusEnumMap[instance.taskStatus]!,
       'startAt': instance.startAt,
     };
+
+const _$TaskStatusEnumMap = {
+  TaskStatus.completed: 'completed',
+  TaskStatus.inProgress: 'inProgress',
+  TaskStatus.notStarted: 'notStarted',
+};

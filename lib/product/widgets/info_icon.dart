@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rotation_app/product/app_constant/spacer/horizantal_spacer.dart';
+import 'package:rotation_app/product/product_constant/spacer/horizantal_spacer.dart';
 
 class InfoIcon extends StatelessWidget {
   final IconData icon;

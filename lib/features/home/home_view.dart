@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/features/home/home_view_model.dart';
-import 'package:rotation_app/features/home/task_list_view/task_list.dart';
+import 'package:rotation_app/features/task_list_view/task_list.dart';
 import 'package:rotation_app/features/task_list_map/flutter_map.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';

@@ -32,6 +32,7 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _addCurrentLocation();
       _setMarkers();
@@ -67,6 +68,9 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
   }
 
   void _setMarkers() async {
+    if (tasks == null) {
+      return;
+    }
     for (var task in tasks!) {
       double lat = double.tryParse(task.lat.toString())!;
       double lng = double.tryParse(task.lng.toString())!;
@@ -94,11 +98,19 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
     }
   }
 
+  bool check(value1, value2) {
+    return value1 && value2 != null;
+  }
+
   void updateCameraPosition() {
     animatedMapController?.animateTo(dest: currentLocation);
   }
 
   void detailPressed() {
-    context.router.push(router.TaskDetail(task: selectedTask.value!));
+    context.router.push(router.TaskDetailPage(task: selectedTask.value!));
+  }
+
+  void mapOnTap(TapPosition? tapPosition, LatLng? point) {
+    infoWindowVisible.value = false;
   }
 }
