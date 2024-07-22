@@ -5,6 +5,7 @@ import 'package:rotation_app/core/mixin/start_task.dart';
 import 'package:rotation_app/features/task_detail/task_detail.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/router/app_router.dart';
+import 'package:rotation_app/product/router/custom_route_observer.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/dialog/dialog.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
@@ -24,7 +25,12 @@ abstract class TaskDetailModel extends ConsumerState<TaskDetail> with DialogUtil
   }
 
   void openMap() {
-    context.router.push(MapRoutePage(task: widget.task));
+    String? routeObserver = CustomRouteObserver.instance.previousRoute;
+    if (routeObserver == "MapRoute") {
+      context.router.maybePop();
+    } else {
+      context.router.push(MapRoutePage(task: widget.task));
+    }
   }
 
   void checkTaskStatus(Task task) {

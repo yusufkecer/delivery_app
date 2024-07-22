@@ -38,7 +38,7 @@ class FlutterMapWidget extends StatelessWidget {
           minZoom: 3,
           onMapReady: () {
             updateCameraPosition();
-            'Map ready'.logInfo;
+            'Map ready'.info;
           },
           initialCenter: currentLocation ?? const LatLng(0.0, 0.0)),
       children: [

@@ -10,10 +10,12 @@ class MyLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: Colors.transparent,
-      title: Lottie.asset(
-        AssetPath.delivery.lottie,
+    return Scaffold(
+      body: AlertDialog(
+        backgroundColor: Colors.transparent,
+        title: Lottie.asset(
+          AssetPath.delivery.lottie,
+        ),
       ),
     );
   }

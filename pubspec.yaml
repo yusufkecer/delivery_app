@@ -24,6 +24,8 @@ dependencies:
   logger: ^2.3.0
   url_launcher: ^6.3.0
   riverpod_annotation: ^2.0.0
+  slider_button: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

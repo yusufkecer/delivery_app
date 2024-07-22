@@ -14,6 +14,7 @@ import 'package:rotation_app/product/widgets/cuttom_elevated.dart';
 @RoutePage()
 class TaskDetail extends ConsumerStatefulWidget {
   final Task task;
+  final bool completeTask = false;
   const TaskDetail({super.key, required this.task});
 
   @override
