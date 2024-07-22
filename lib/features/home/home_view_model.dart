@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rotation_app/core/extension/logger_extension.dart';
 import 'package:rotation_app/core/mixin/permission.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/icons.dart';
@@ -42,6 +43,12 @@ abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin,
     super.initState();
   }
 
+  @override
+  void dispose() {
+    tabController?.dispose();
+    super.dispose();
+  }
+
   Future<void> getTasks() async {
     if (task == null) {
       showGeneralError();
@@ -56,7 +63,7 @@ abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin,
     }
     taskList = task!.taskList;
 
-    logger.i('Tasks are fetched');
+    "task fetched".logInfo;
   }
 
   bool checkData() {

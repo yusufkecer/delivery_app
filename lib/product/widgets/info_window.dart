@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/app_constant/padding.dart';
-import 'package:rotation_app/product/app_constant/radius.dart';
+import 'package:rotation_app/product/product_constant/padding.dart';
+import 'package:rotation_app/product/product_constant/radius.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 
 class InfoCard extends StatelessWidget {

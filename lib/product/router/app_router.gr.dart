@@ -21,11 +21,21 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeScreen(),
       );
     },
-    TaskDetail.name: (routeData) {
+    MapRoutePage.name: (routeData) {
+      final args = routeData.argsAs<MapRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MapRoute(
+          key: args.key,
+          task: args.task,
+        ),
+      );
+    },
+    TaskDetailPage.name: (routeData) {
       final args = routeData.argsAs<TaskDetailArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: task_detail.TaskDetail(
+        child: TaskDetail(
           key: args.key,
           task: args.task,
         ),
@@ -49,14 +59,51 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TaskDetail]
-class TaskDetail extends PageRouteInfo<TaskDetailArgs> {
-  TaskDetail({
+/// [MapRoute]
+class MapRoutePage extends PageRouteInfo<MapRouteArgs> {
+  MapRoutePage({
     Key? key,
     required Task task,
     List<PageRouteInfo>? children,
   }) : super(
-          TaskDetail.name,
+          MapRoutePage.name,
+          args: MapRouteArgs(
+            key: key,
+            task: task,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MapRoute';
+
+  static const PageInfo<MapRouteArgs> page = PageInfo<MapRouteArgs>(name);
+}
+
+class MapRouteArgs {
+  const MapRouteArgs({
+    this.key,
+    required this.task,
+  });
+
+  final Key? key;
+
+  final Task task;
+
+  @override
+  String toString() {
+    return 'MapRouteArgs{key: $key, task: $task}';
+  }
+}
+
+/// generated route for
+/// [TaskDetail]
+class TaskDetailPage extends PageRouteInfo<TaskDetailArgs> {
+  TaskDetailPage({
+    Key? key,
+    required Task task,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TaskDetailPage.name,
           args: TaskDetailArgs(
             key: key,
             task: task,

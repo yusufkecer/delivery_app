@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/core/provider/base_notifier.dart';
 import 'package:rotation_app/features/task_detail/task_detail_model.dart';
 import 'package:rotation_app/features/task_detail/widgets/detail_list.dart';
-import 'package:rotation_app/product/app_constant/padding.dart';
-import 'package:rotation_app/product/app_constant/spacer/vertical_spacer.dart';
+import 'package:rotation_app/product/product_constant/padding.dart';
+import 'package:rotation_app/product/product_constant/spacer/vertical_spacer.dart';
+import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/cuttom_elevated.dart';
@@ -23,7 +23,7 @@ class TaskDetail extends ConsumerStatefulWidget {
 class _TaskDetailState extends TaskDetailModel {
   @override
   Widget build(BuildContext context) {
-    taskNotifier = ref.read(NotifierManager.instance.task.notifier);
+    taskNotifier = ref.read(taskNotifierProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         title: const Text(StringData.taskDetailTitle),

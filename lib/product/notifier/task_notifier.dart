@@ -1,14 +1,20 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rotation_app/core/enum/task_status.dart';
 import 'package:rotation_app/core/extension/date_extension.dart';
 import 'package:rotation_app/core/extension/list_sort_multi_value.dart';
 import 'package:rotation_app/product/repo/task_repo/task_repo.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 
-class TaskNotifier extends StateNotifier<List<Task>> {
+part 'task_notifier.g.dart';
+
+@riverpod
+class TaskNotifier extends _$TaskNotifier {
   final TaskRepo _taskRepo = TaskRepo();
   bool ongoingTask = false;
+
+  @override
+  List<Task> build() => [];
+
   List<Task> get taskList => state;
 
   Future<Map> updateTask(String id, Map<String, dynamic> body, bool isCancel) async {
@@ -39,25 +45,31 @@ class TaskNotifier extends StateNotifier<List<Task>> {
   }
 
   void removeTask(Task task) {
-    taskList.remove(task);
+    state = state..remove(task);
   }
 
   void updateTaskStatus(bool isCancel, String id) {
     if (!isCancel) {
-      state.firstWhere((element) {
+      state = state.map((element) {
         if (element.id == id) {
-          element.taskStatus = TaskStatus.inProgress;
-          element.startAt = DateTime.now().formattedDate;
-          return true;
+          element = element.copyWith(
+            taskStatus: TaskStatus.inProgress,
+            startAt: DateTime.now().formattedDate,
+          );
         }
-        return false;
-      });
+        return element;
+      }).toList();
     } else {
-      state.first.taskStatus = TaskStatus.notStarted;
-      state.first.startAt = "";
+      state = state.map((element) {
+        if (element.id == id) {
+          element = element.copyWith(
+            taskStatus: TaskStatus.notStarted,
+            startAt: "",
+          );
+        }
+        return element;
+      }).toList();
       ongoingTask = false;
     }
   }
-
-  TaskNotifier() : super([]);
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/core/provider/base_notifier.dart';
-import 'package:rotation_app/features/home/task_list_view/task_list_model.dart';
-import 'package:rotation_app/features/home/task_list_view/widgets/card.dart';
+import 'package:rotation_app/features/task_list_view/task_list_model.dart';
+import 'package:rotation_app/features/task_list_view/widgets/card.dart';
+import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/util/constants/icons.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 
@@ -19,8 +19,8 @@ class TaskList extends ConsumerStatefulWidget {
 class _TaskListState extends TaskListModel {
   @override
   Widget build(BuildContext context) {
-    taskList = ref.watch(NotifierManager.instance.task);
-    taskNotifier = ref.read(NotifierManager.instance.task.notifier);
+    taskList = ref.watch(taskNotifierProvider);
+    taskNotifier = ref.read(taskNotifierProvider.notifier);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: callButton,

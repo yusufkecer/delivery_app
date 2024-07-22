@@ -42,4 +42,6 @@ final class StringData {
   static const String address = 'Adres';
 
   static const String distance = 'Mesafe';
+
+  static const String locationError = 'Konum alınamadı. Lütfen izinleri kontrol edin.';
 }
