@@ -5,6 +5,7 @@ import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:rotation_app/core/extension/logger_extension.dart';
 import 'package:rotation_app/core/mixin/permission.dart';
 
 import 'package:rotation_app/features/map_route/map_route.dart';
@@ -18,6 +19,8 @@ abstract class MapRouteModel extends ConsumerState<MapRoute>
   AnimatedMapController? animatedMapController;
 
   LatLng? location;
+
+  ValueNotifier<bool> isLoading = ValueNotifier(true);
   @override
   void initState() {
     animatedMapController = AnimatedMapController(
@@ -37,6 +40,8 @@ abstract class MapRouteModel extends ConsumerState<MapRoute>
       return;
     }
     location = LatLng(position.latitude, position.longitude);
+    location.info;
+    isLoading.value = false;
   }
 
   void detailPressed() {

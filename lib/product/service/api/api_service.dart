@@ -13,7 +13,7 @@ class ApiService implements BaseService {
     Uri url = Uri.parse(base + endPoint);
     final response = await http.delete(url);
     if (response.statusCode == 200) {
-      "deleted".logInfo;
+      "deleted".info;
     } else {
       throw Exception('Failed to delete ');
     }
@@ -42,7 +42,7 @@ class ApiService implements BaseService {
   Future<Map> update(String endPoint, Map body, String id) async {
     Uri url = Uri.parse("$base$endPoint/$id");
 
-    "request $endPoint".logInfo;
+    "request $endPoint".info;
     final response = await http.put(url, body: body);
 
     if (response.statusCode == 200) {
@@ -51,7 +51,7 @@ class ApiService implements BaseService {
         'status': 'success',
       };
     } else {
-      'Failed to update'.logInfo;
+      'Failed to update'.info;
       return {
         'statusCode': response.statusCode,
         'status': "error",
@@ -64,7 +64,7 @@ class ApiService implements BaseService {
     Uri url = Uri.parse(base + endPoint);
     final response = await http.post(url, body: body);
     if (response.statusCode == 200) {
-      'created'.logInfo;
+      'created'.info;
     } else {
       throw Exception('Failed to create');
     }

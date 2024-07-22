@@ -63,7 +63,7 @@ abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin,
     }
     taskList = task!.taskList;
 
-    "task fetched".logInfo;
+    "task fetched".info;
   }
 
   bool checkData() {

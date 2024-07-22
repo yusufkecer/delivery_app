@@ -19,11 +19,11 @@ mixin PermissionMixin<T extends StatefulWidget> on State<T> {
   Future<Position?> getLocation() async {
     await checkPermission();
     if (permissionStatus == PermissionStatus.denied) {
-      "permission denied".logInfo;
+      "permission denied".info;
       await requestPermission();
     } else if (permissionStatus == PermissionStatus.granted) {
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      "position: $position".logInfo;
+      "position: $position".info;
       return position;
     }
     return null;

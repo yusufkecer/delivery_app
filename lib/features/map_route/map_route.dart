@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/features/map_route/map_route_model.dart';
 import 'package:rotation_app/features/task_list_map/widgets/task_info_window.dart';
+import 'package:rotation_app/product/util/loading/lottie_loading.dart';
 
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/flutter_map/flutter_map_widget.dart';
@@ -23,7 +24,15 @@ class MapRoute extends ConsumerStatefulWidget {
 class _MapRouteState extends MapRouteModel {
   @override
   Widget build(BuildContext context) {
-    return FlutterMapWidget(
+    return ValueListenableBuilder(
+      valueListenable: isLoading,
+      builder: (context, value, child) => value == true ? const MyLoading() : mapWidget(),
+    );
+  }
+
+  SafeArea mapWidget() {
+    return SafeArea(
+      child: FlutterMapWidget(
         markers: markers,
         animatedMapController: animatedMapController,
         backBtn: true,
@@ -31,6 +40,8 @@ class _MapRouteState extends MapRouteModel {
         cardLayer: TaskInfoWindow(
           task: widget.task,
           detailPressed: detailPressed,
-        ));
+        ),
+      ),
+    );
   }
 }

@@ -1,15 +1,13 @@
 import 'package:logger/logger.dart';
 
 extension LoggerExtension on dynamic {
-  void logInfo(String message) {
-    Logger().i(message);
+  dynamic get info => Logger().i(this);
+
+  void logError(String message, [dynamic error]) {
+    Logger().e(message, error: error);
   }
 
-  void logError(String message) {
-    Logger().e(message);
-  }
+  dynamic get warning => Logger().w(this);
 
-  void logWarning(String message) {
-    Logger().w(message);
-  }
+  dynamic get fatal => Logger().f(this);
 }

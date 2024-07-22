@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
+import 'package:rotation_app/product/router/custom_route_observer.dart';
 import 'package:rotation_app/product/util/global/auto_route.dart';
 import 'package:rotation_app/product/router/app_router.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routerConfig: router.config(),
+      routerConfig: router.config(
+        navigatorObservers: () => [CustomRouteObserver.instance],
+      ),
       title: StringData.appTitle,
       theme: ThemeData(
         cardTheme: const CardTheme(
