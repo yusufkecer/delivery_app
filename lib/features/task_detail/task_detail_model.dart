@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rotation_app/core/enum/task_status.dart';
+import 'package:rotation_app/core/extension/logger_extension.dart';
 import 'package:rotation_app/core/mixin/start_task.dart';
 import 'package:rotation_app/features/task_detail/task_detail.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
@@ -40,6 +41,29 @@ abstract class TaskDetailModel extends ConsumerState<TaskDetail> with DialogUtil
     } else {
       fun = startPressed;
       buttonText = StringData.startTask;
+    }
+  }
+
+  Future<bool?> swipeAction() async {
+    String? id = widget.task.id;
+    "swipeAction".warning;
+    if (id == null) {
+      showGeneralError();
+      return false;
+    }
+    Map res = await taskNotifier!.updateTask(id, {"isCompleted": true}, status: TaskStatus.completed);
+
+    if (res["statusCode"] == 200) {
+      if (!mounted) return false;
+
+      context.router.pushAndPopUntil(
+        const HomeRoute(),
+        predicate: (route) => false,
+      );
+      return true;
+    } else {
+      showGeneralError();
+      return false;
     }
   }
 }

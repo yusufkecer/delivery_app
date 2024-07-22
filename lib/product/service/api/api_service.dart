@@ -42,9 +42,7 @@ class ApiService implements BaseService {
   Future<Map> update(String endPoint, Map body, String id) async {
     Uri url = Uri.parse("$base$endPoint/$id");
 
-    "request $endPoint".info;
-    final response = await http.put(url, body: body);
-
+    final response = await http.put(url, body: jsonEncode(body));
     if (response.statusCode == 200) {
       return {
         'statusCode': 200,

@@ -18,7 +18,7 @@ mixin StartTask on DialogUtil {
       "startAt": formattedDate,
     };
 
-    Map? status = await taskNotifier?.updateTask(task.id!, body, false);
+    Map? status = await taskNotifier?.updateTask(task.id!, body);
     checkRespose(status);
   }
 

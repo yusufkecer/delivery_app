@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rotation_app/core/enum/task_status.dart';
 
 import 'package:rotation_app/core/mixin/launch_mixin.dart';
 import 'package:rotation_app/core/mixin/start_task.dart';
@@ -28,7 +29,7 @@ abstract class TaskListModel extends ConsumerState<TaskList> with LaunchMixin, D
       "startAt": "",
     };
 
-    Map? status = await taskNotifier?.updateTask(task.id!, body, true);
+    Map? status = await taskNotifier?.updateTask(task.id!, body, status: TaskStatus.inProgress);
     checkRespose(status);
     launchPhone("tel", "05555555555");
   }

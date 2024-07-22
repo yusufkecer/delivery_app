@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 @immutable
 final class StringData {
   static const String appTitle = 'RotationApp';
-  static const String homePageTitle = 'Flutter Demo Home Page';
-  static const String pushButton = 'You have pushed the button this many times:';
 
   static const String ok = 'Tamam';
 
@@ -44,4 +42,7 @@ final class StringData {
   static const String distance = 'Mesafe';
 
   static const String locationError = 'Konum alınamadı. Lütfen izinleri kontrol edin.';
+
+  static const String swipeToComplete = 'Görevi tamamlamak için kaydır';
+  static const String complete = 'Tamamla';
 }
