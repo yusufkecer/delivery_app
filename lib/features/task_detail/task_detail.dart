@@ -40,11 +40,20 @@ class _TaskDetailState extends TaskDetailModel {
               child: DetailList(task: widget.task),
             ),
             const VerticalSpace.xSmall(),
-            widget.isTaskComplete ? swipeButton() : bttn(),
+            buildActionButton()
           ],
         ),
       ),
     );
+  }
+
+  Widget buildActionButton() {
+    if (widget.isTaskComplete) {
+      return swipeButton();
+    } else if (widget.task.isCompleted == false) {
+      return bttn();
+    }
+    return const SizedBox.shrink();
   }
 
   SwipeButton swipeButton() {

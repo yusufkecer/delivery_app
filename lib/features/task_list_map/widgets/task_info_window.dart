@@ -1,24 +1,21 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:rotation_app/core/enum/task_status.dart';
-import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/core/extension/key_extension.dart';
-import 'package:rotation_app/product/product_constant/padding.dart';
 
+import 'package:rotation_app/core/extension/context_extension.dart';
+import 'package:rotation_app/product/product_constant/padding.dart';
 import 'package:rotation_app/product/product_constant/spacer/vertical_spacer.dart';
-import 'package:rotation_app/product/router/app_router.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
-import 'package:rotation_app/product/util/global/auto_route.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/info_window.dart';
 
 class TaskInfoWindow extends StatelessWidget {
   final Task task;
   final void Function()? detailPressed;
+  final void Function()? routePressed;
   const TaskInfoWindow({
     super.key,
     required this.task,
     this.detailPressed,
+    this.routePressed,
   });
 
   @override
@@ -38,16 +35,16 @@ class TaskInfoWindow extends StatelessWidget {
             ),
           ),
           const VerticalSpace.xxxSmall(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              txtbttn(detailPressed, StringData.taskDetail),
-              if (checkProgress()) txtbttn(completePress, StringData.complete),
-            ],
-          ),
+          buttons(),
         ],
       ),
     );
+  }
+
+  Row buttons() {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      txtbttn(detailPressed, StringData.complete),
+    ]);
   }
 
   TextButton txtbttn(void Function()? pressed, String text) {
@@ -60,16 +57,5 @@ class TaskInfoWindow extends StatelessWidget {
       onPressed: pressed,
       child: Text(text),
     );
-  }
-
-  bool checkProgress() {
-    return task.taskStatus == TaskStatus.inProgress;
-  }
-
-  void completePress() {
-    BuildContext? context = RoutingSettings.instance.currentContext;
-    if (context != null) {
-      context.router.push(TaskDetailPage(task: task, isTaskComplete: true));
-    }
   }
 }

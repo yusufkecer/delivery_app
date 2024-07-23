@@ -3,8 +3,8 @@ import 'package:logger/logger.dart';
 extension LoggerExtension on dynamic {
   dynamic get info => Logger().i(this);
 
-  void logError(String message, [dynamic error]) {
-    Logger().e(message, error: error);
+  void logError([dynamic error]) {
+    Logger().e(this, error: error);
   }
 
   dynamic get warning => Logger().w(this);

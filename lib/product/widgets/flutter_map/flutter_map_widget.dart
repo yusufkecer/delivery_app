@@ -12,13 +12,15 @@ import 'package:rotation_app/product/util/global/auto_route.dart';
 
 class FlutterMapWidget extends StatelessWidget {
   final AnimatedMapController? animatedMapController;
-  final List<Marker>? markers;
+  final List<AnimatedMarker>? markers;
   final LatLng? currentLocation;
   final Widget? cardLayer;
   final bool? backBtn;
+  final List<Polyline>? polylines;
   final void Function(TapPosition? tapPosition, LatLng? point)? onTap;
 
   const FlutterMapWidget({
+    this.polylines,
     super.key,
     this.animatedMapController,
     this.markers,
@@ -46,15 +48,25 @@ class FlutterMapWidget extends StatelessWidget {
         markerLayer(),
         infoWindow(),
         backButton(),
+        polyLayer(),
       ],
     );
+  }
+
+  PolylineLayer<Object> polyLayer() {
+    if (polylines == null) {
+      return const PolylineLayer(polylines: []);
+    }
+    return PolylineLayer(polylines: polylines!);
   }
 
   Widget infoWindow() {
     return cardLayer ?? const SizedBox.shrink();
   }
 
-  MarkerLayer markerLayer() => MarkerLayer(markers: markers ?? []);
+  AnimatedMarkerLayer markerLayer() => AnimatedMarkerLayer(
+        markers: markers ?? [],
+      );
 
   TileLayer tileLayer() {
     return TileLayer(

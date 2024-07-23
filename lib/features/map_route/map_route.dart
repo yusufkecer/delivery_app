@@ -32,16 +32,22 @@ class _MapRouteState extends MapRouteModel {
 
   SafeArea mapWidget() {
     return SafeArea(
-      child: FlutterMapWidget(
-        markers: markers,
-        animatedMapController: animatedMapController,
-        backBtn: true,
-        currentLocation: location,
-        cardLayer: TaskInfoWindow(
-          task: widget.task,
-          detailPressed: detailPressed,
-        ),
-      ),
+      child: ValueListenableBuilder(
+          valueListenable: polyLine,
+          builder: (context, value, child) {
+            return FlutterMapWidget(
+              markers: markers,
+              animatedMapController: animatedMapController,
+              backBtn: true,
+              currentLocation: location,
+              polylines: polyLine.value,
+              cardLayer: TaskInfoWindow(
+                task: widget.task,
+                detailPressed: detailPressed,
+                routePressed: drawRoute,
+              ),
+            );
+          }),
     );
   }
 }

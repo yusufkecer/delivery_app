@@ -16,7 +16,7 @@ import 'package:rotation_app/product/router/app_router.dart' as router;
 abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with PermissionMixin, TickerProviderStateMixin {
   final ValueNotifier<bool> isMapLoading = ValueNotifier(true);
 
-  List<Marker> markers = [];
+  List<AnimatedMarker> markers = [];
 
   List<Task>? tasks;
   LatLng currentLocation = const LatLng(0.0, 0.0);
@@ -53,14 +53,14 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
       currentLocation = LatLng(position.latitude, position.longitude);
       isMapLoading.value = false;
       markers.add(
-        Marker(
+        AnimatedMarker(
           width: 80.0,
           height: 80.0,
           point: LatLng(position.latitude, position.longitude),
-          child: const Icon(
-            IconsData.markerIcon,
+          builder: (context, animation) => const Icon(
+            IconsData.myLocation,
             color: ColorData.green,
-            size: 40.0,
+            size: 32,
           ),
         ),
       );
@@ -75,12 +75,12 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
       double lat = double.tryParse(task.lat.toString())!;
       double lng = double.tryParse(task.lng.toString())!;
       markers.add(
-        Marker(
+        AnimatedMarker(
           rotate: true,
           width: 80.0,
           height: 80.0,
           point: LatLng(lat, lng),
-          child: GestureDetector(
+          builder: (context, animation) => GestureDetector(
             onTap: () {
               currentLocation = LatLng(lat, lng);
               updateCameraPosition();
@@ -90,7 +90,7 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
             child: const Icon(
               IconsData.markerIcon,
               color: ColorData.red,
-              size: 40.0,
+              size: 32,
             ),
           ),
         ),

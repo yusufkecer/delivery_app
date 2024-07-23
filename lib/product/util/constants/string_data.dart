@@ -45,4 +45,6 @@ final class StringData {
 
   static const String swipeToComplete = 'Görevi tamamlamak için kaydır';
   static const String complete = 'Tamamla';
+
+  static const String routeError = 'Yol tarifi alınamadı. Lütfen tekrar deneyin.';
 }

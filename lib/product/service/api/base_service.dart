@@ -3,4 +3,5 @@ abstract class BaseService {
   Future<void> create(String endPoint, Map<String, dynamic> body);
   Future<void> update(String endPoint, Map<String, dynamic> body, String id);
   Future<void> delete(String endPoint);
+  Future getDirections(String start, String end);
 }
