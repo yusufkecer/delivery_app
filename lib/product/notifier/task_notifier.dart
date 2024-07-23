@@ -17,8 +17,8 @@ class TaskNotifier extends _$TaskNotifier {
 
   List<Task> get taskList => state;
 
-  Future<Map> updateTask(String id, Map<String, dynamic> body, bool isCancel) async {
-    updateTaskStatus(isCancel, id);
+  Future<Map> updateTask(String id, Map<String, dynamic> body, {TaskStatus status = TaskStatus.notStarted}) async {
+    updateTaskStatus(status, id);
 
     Map data = await _taskRepo.update(body, id);
 
@@ -48,8 +48,8 @@ class TaskNotifier extends _$TaskNotifier {
     state = state..remove(task);
   }
 
-  void updateTaskStatus(bool isCancel, String id) {
-    if (!isCancel) {
+  void updateTaskStatus(TaskStatus status, String id) {
+    if (status == TaskStatus.notStarted) {
       state = state.map((element) {
         if (element.id == id) {
           element = element.copyWith(
@@ -59,7 +59,7 @@ class TaskNotifier extends _$TaskNotifier {
         }
         return element;
       }).toList();
-    } else {
+    } else if (status == TaskStatus.inProgress) {
       state = state.map((element) {
         if (element.id == id) {
           element = element.copyWith(
@@ -70,6 +70,17 @@ class TaskNotifier extends _$TaskNotifier {
         return element;
       }).toList();
       ongoingTask = false;
+    } else if (status == TaskStatus.completed) {
+      state = state.map((element) {
+        if (element.id == id) {
+          element = element.copyWith(
+            taskStatus: TaskStatus.completed,
+            isCompleted: true,
+          );
+        }
+
+        return element;
+      }).toList();
     }
   }
 }

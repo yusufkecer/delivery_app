@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:rotation_app/core/extension/logger_extension.dart';
 
 class CustomRouteObserver extends AutoRouteObserver {
   CustomRouteObserver._internal();
@@ -10,7 +11,7 @@ class CustomRouteObserver extends AutoRouteObserver {
 
   @override
   void didPush(Route route, Route? previousRoute) {
-    print("pushe");
+    "pushed".warning;
     super.didPush(route, previousRoute);
     this.previousRoute = previousRoute?.settings.name;
   }

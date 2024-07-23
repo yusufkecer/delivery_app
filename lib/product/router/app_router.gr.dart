@@ -38,6 +38,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: TaskDetail(
           key: args.key,
           task: args.task,
+          isTaskComplete: args.isTaskComplete,
         ),
       );
     },
@@ -101,12 +102,14 @@ class TaskDetailPage extends PageRouteInfo<TaskDetailArgs> {
   TaskDetailPage({
     Key? key,
     required Task task,
+    bool isTaskComplete = false,
     List<PageRouteInfo>? children,
   }) : super(
           TaskDetailPage.name,
           args: TaskDetailArgs(
             key: key,
             task: task,
+            isTaskComplete: isTaskComplete,
           ),
           initialChildren: children,
         );
@@ -120,14 +123,17 @@ class TaskDetailArgs {
   const TaskDetailArgs({
     this.key,
     required this.task,
+    this.isTaskComplete = false,
   });
 
   final Key? key;
 
   final Task task;
 
+  final bool isTaskComplete;
+
   @override
   String toString() {
-    return 'TaskDetailArgs{key: $key, task: $task}';
+    return 'TaskDetailArgs{key: $key, task: $task, isTaskComplete: $isTaskComplete}';
   }
 }

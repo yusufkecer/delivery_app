@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/product/product_constant/padding.dart';
-
 import 'package:rotation_app/product/product_constant/spacer/vertical_spacer.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
@@ -10,10 +10,12 @@ import 'package:rotation_app/product/widgets/info_window.dart';
 class TaskInfoWindow extends StatelessWidget {
   final Task task;
   final void Function()? detailPressed;
+  final void Function()? routePressed;
   const TaskInfoWindow({
     super.key,
     required this.task,
     this.detailPressed,
+    this.routePressed,
   });
 
   @override
@@ -33,17 +35,27 @@ class TaskInfoWindow extends StatelessWidget {
             ),
           ),
           const VerticalSpace.xxxSmall(),
-          TextButton(
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.all(0.0),
-              minimumSize: Size.zero,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
-            onPressed: detailPressed,
-            child: const Text(StringData.taskDetail),
-          ),
+          buttons(),
         ],
       ),
+    );
+  }
+
+  Row buttons() {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      txtbttn(detailPressed, StringData.complete),
+    ]);
+  }
+
+  TextButton txtbttn(void Function()? pressed, String text) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.all(0.0),
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      onPressed: pressed,
+      child: Text(text),
     );
   }
 }

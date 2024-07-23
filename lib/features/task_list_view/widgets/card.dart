@@ -40,9 +40,9 @@ class CardTask extends StatelessWidget {
         children: [
           baseListTile(context),
           const VerticalSpace.xxxSmall(),
-          situation(task.taskStatus),
+          situationWidget(task.taskStatus),
           const VerticalSpace.xxSmall(),
-          buttons(navigationButtonName),
+          buttons(navigationButtonName, task.taskStatus),
           const VerticalSpace.xSmall(),
         ],
       ),
@@ -74,13 +74,24 @@ class CardTask extends StatelessWidget {
     );
   }
 
-  Container situation(TaskStatus isCompleted) {
+  Map<String, dynamic> situation(TaskStatus isCompleted) {
     Color? color = ColorData.red;
+    String text = StringData.notStarted;
+    IconData icon = IconsData.navigation;
     if (isCompleted == TaskStatus.inProgress) {
       color = ColorData.amber;
+      text = StringData.onProgress;
     } else if (isCompleted == TaskStatus.completed) {
       color = ColorData.green;
+      text = StringData.completed;
+      icon = IconsData.check;
     }
+    return {"color": color, "text": text, "icon": icon};
+  }
+
+  Container situationWidget(TaskStatus isCompleted) {
+    Map<String, dynamic> situationMap = situation(isCompleted);
+    Color color = situationMap["color"];
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -99,16 +110,19 @@ class CardTask extends StatelessWidget {
     );
   }
 
-  Row buttons(String navigationButtonName) {
+  Row buttons(String navigationButtonName, TaskStatus taskStatus) {
+    Map<String, dynamic> data = situation(taskStatus);
+    String text = data["text"];
+    IconData icon = data["icon"];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         DynmicButtonSize(
           child: CustomElevated(
-            label: navigationButtonName,
-            icon: IconsData.navigation,
+            label: text,
+            icon: icon,
             backgroundColor: ColorData.ocean,
-            onPressed: navigationPressed,
+            onPressed: taskStatus == TaskStatus.completed ? null : navigationPressed,
           ),
         ),
         DynmicButtonSize(

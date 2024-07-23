@@ -13,13 +13,11 @@ Task _$TaskFromJson(Map<String, dynamic> json) => Task(
       address: json['address'] as String?,
       city: json['city'] as String?,
       startAt: json['startAt'] as String?,
-      isCompleted: json['isCompleted'] as bool?,
+      isCompleted: bool.tryParse(json['isCompleted'].toString()),
       title: json['title'] as String?,
       description: json['description'] as String?,
       distance: (json['distance'] as num?)?.toDouble(),
-      taskStatus:
-          $enumDecodeNullable(_$TaskStatusEnumMap, json['taskStatus']) ??
-              TaskStatus.notStarted,
+      taskStatus: $enumDecodeNullable(_$TaskStatusEnumMap, json['taskStatus']) ?? TaskStatus.notStarted,
     );
 
 Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
