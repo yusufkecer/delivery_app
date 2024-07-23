@@ -51,7 +51,7 @@ abstract class TaskDetailModel extends ConsumerState<TaskDetail> with DialogUtil
       showGeneralError();
       return false;
     }
-    Map res = await taskNotifier!.updateTask(id, {"isCompleted": true}, status: TaskStatus.completed);
+    Map res = await taskNotifier!.updateTask(id, {"isCompleted": "true"}, status: TaskStatus.completed);
 
     if (res["statusCode"] == 200) {
       if (!mounted) return false;

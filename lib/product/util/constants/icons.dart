@@ -15,4 +15,5 @@ final class IconsData {
   static const IconData phone = Icons.phone;
   static const IconData markerIcon = Icons.location_on;
   static const IconData doubleArrow = Icons.double_arrow_sharp;
+  static const IconData check = Icons.check;
 }

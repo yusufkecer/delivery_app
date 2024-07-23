@@ -4,7 +4,7 @@ import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/product/util/constants/colors.dart';
 
 class CustomElevated extends StatelessWidget {
-  final Function() onPressed;
+  final Function()? onPressed;
   final String label;
   final IconData? icon;
   final Color? backgroundColor;

@@ -30,7 +30,6 @@ class Task implements IdModel {
     this.distance,
     this.taskStatus = TaskStatus.notStarted,
   });
-  //copyWith method
 
   Task copyWith({
     String? id,
