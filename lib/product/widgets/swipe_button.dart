@@ -4,7 +4,8 @@ import 'package:slider_button/slider_button.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/product/util/constants/color_data.dart';
 
-class SwipeButton extends StatelessWidget {
+@immutable
+final class SwipeButton extends StatelessWidget {
   final String label;
   final IconData icon;
   final Future<bool?> Function() action;

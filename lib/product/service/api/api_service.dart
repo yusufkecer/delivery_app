@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/logger_extension.dart';
 import 'package:rotation_app/product/service/api/api_key.dart';
 import 'package:rotation_app/product/service/api/api_url.dart';
 import 'package:rotation_app/product/service/api/base_service.dart';
 import 'package:http/http.dart' as http;
 
+@immutable
 final class ApiService implements BaseService {
   final String base = ApiUrl.baseUrl;
 

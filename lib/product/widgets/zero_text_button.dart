@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ZeroTextButton extends StatelessWidget {
+@immutable
+final class ZeroTextButton extends StatelessWidget {
   final void Function()? pressed;
   final String text;
   const ZeroTextButton({
-    Key? key,
+    super.key,
     this.pressed,
     required this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -14,11 +14,11 @@ final class CardButtons extends StatelessWidget with SituationMixin {
   final void Function() navigationPressed;
   final void Function() detailPressed;
   const CardButtons({
-    Key? key,
+    super.key,
     required this.taskStatus,
     required this.navigationPressed,
     required this.detailPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

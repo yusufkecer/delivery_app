@@ -12,7 +12,6 @@ void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-//!FIXME: Tamamlanan sonraki görevler için startAt düzenle
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

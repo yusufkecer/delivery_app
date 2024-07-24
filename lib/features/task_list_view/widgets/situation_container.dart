@@ -6,12 +6,13 @@ import 'package:rotation_app/product/util/constants/color_data.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/widgets/info_rich.dart';
 
-class SituationContainer extends StatelessWidget with SituationMixin {
+@immutable
+final class SituationContainer extends StatelessWidget with SituationMixin {
   final TaskStatus taskStatus;
   const SituationContainer({
-    Key? key,
+    super.key,
     required this.taskStatus,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -8,7 +8,8 @@ import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/info_card.dart';
 import 'package:rotation_app/product/widgets/zero_text_button.dart';
 
-class TaskInfoWindow extends StatelessWidget {
+@immutable
+final class TaskInfoWindow extends StatelessWidget {
   final Task task;
   final void Function()? detailPressed;
   final void Function()? routePressed;

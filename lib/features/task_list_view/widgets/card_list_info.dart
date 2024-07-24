@@ -6,18 +6,19 @@ import 'package:rotation_app/product/util/constants/color_data.dart';
 import 'package:rotation_app/product/util/constants/icons_data.dart';
 import 'package:rotation_app/product/widgets/info_icon.dart';
 
-class CardListInfo extends StatelessWidget {
+@immutable
+final class CardListInfo extends StatelessWidget {
   final String? title;
   final String? description;
   final String address;
   final String distance;
   const CardListInfo({
-    Key? key,
+    super.key,
     this.title,
     this.description,
     required this.address,
     required this.distance,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
