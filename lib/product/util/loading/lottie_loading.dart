@@ -5,7 +5,8 @@ import 'package:rotation_app/core/extension/string_extension.dart';
 import 'package:rotation_app/product/util/global/route_settings.dart';
 import 'package:rotation_app/product/util/constants/asset_path.dart';
 
-class LottieLoading extends StatelessWidget {
+@immutable
+final class LottieLoading extends StatelessWidget {
   const LottieLoading({super.key});
 
   @override

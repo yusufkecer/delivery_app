@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/product/util/constants/color_data.dart';
 
-class CustomElevated extends StatelessWidget {
+@immutable
+final class CustomElevated extends StatelessWidget {
   final Function()? onPressed;
   final String label;
   final IconData? icon;

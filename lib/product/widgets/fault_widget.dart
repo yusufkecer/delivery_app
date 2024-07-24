@@ -5,7 +5,8 @@ import 'package:rotation_app/core/extension/string_extension.dart';
 import 'package:rotation_app/product/util/constants/asset_path.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 
-class FaultWidget extends StatelessWidget {
+@immutable
+final class FaultWidget extends StatelessWidget {
   const FaultWidget({super.key});
 
   @override

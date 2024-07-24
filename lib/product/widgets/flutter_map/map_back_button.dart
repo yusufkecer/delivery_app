@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-class MapBackButton extends StatelessWidget {
+@immutable
+final class MapBackButton extends StatelessWidget {
   const MapBackButton({super.key});
 
   @override

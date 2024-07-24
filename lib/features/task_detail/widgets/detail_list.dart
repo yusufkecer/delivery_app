@@ -9,7 +9,8 @@ import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/info_rich.dart';
 
-class DetailList extends StatelessWidget {
+@immutable
+final class DetailList extends StatelessWidget {
   final Task task;
   const DetailList({
     super.key,

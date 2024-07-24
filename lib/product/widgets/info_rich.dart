@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:rotation_app/core/extension/context_extension.dart';
 
-class InfoRich extends StatelessWidget {
+@immutable
+final class InfoRich extends StatelessWidget {
   final String title;
   final String text;
   final Color? color;

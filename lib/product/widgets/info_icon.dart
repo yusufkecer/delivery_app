@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/product/product_constant/spacer/horizantal_spacer.dart';
 
-class InfoIcon extends StatelessWidget {
+@immutable
+final class InfoIcon extends StatelessWidget {
   final IconData icon;
   final String text;
   final Color iconColor;

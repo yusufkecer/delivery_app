@@ -8,23 +8,26 @@ import 'package:rotation_app/core/extension/logger_extension.dart';
 import 'package:rotation_app/product/service/api/api_url.dart';
 import 'package:rotation_app/product/widgets/flutter_map/map_back_button.dart';
 
-class FlutterMapWidget extends StatelessWidget {
+@immutable
+final class FlutterMapWidget extends StatelessWidget {
   final AnimatedMapController? animatedMapController;
   final List<AnimatedMarker>? markers;
   final LatLng? currentLocation;
   final Widget? cardLayer;
   final bool? backBtn;
   final List<Polyline>? polylines;
+  final double initialZoom;
   final void Function(TapPosition? tapPosition, LatLng? point)? onTap;
 
   const FlutterMapWidget({
-    this.polylines,
     super.key,
     this.animatedMapController,
     this.markers,
     this.currentLocation = const LatLng(0.0, 0.0),
     this.cardLayer,
     this.backBtn,
+    this.polylines,
+    this.initialZoom = 10,
     this.onTap,
   });
 
@@ -34,7 +37,7 @@ class FlutterMapWidget extends StatelessWidget {
       mapController: animatedMapController?.mapController,
       options: MapOptions(
           onTap: onTap,
-          initialZoom: 3,
+          initialZoom: initialZoom,
           minZoom: 3,
           onMapReady: () {
             updateCameraPosition();

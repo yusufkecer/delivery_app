@@ -7,24 +7,26 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:rotation_app/core/extension/logger_extension.dart';
 import 'package:rotation_app/core/mixin/permission.dart';
+import 'package:rotation_app/core/mixin/route_mixin.dart';
+import 'package:rotation_app/product/util/custom_marker/custom_marker.dart';
 
 import 'package:rotation_app/features/map_route/map_route.dart';
 import 'package:rotation_app/product/router/app_router.dart';
-import 'package:rotation_app/product/service/api/api_service.dart';
+
 import 'package:rotation_app/product/util/constants/color_data.dart';
 import 'package:rotation_app/product/util/constants/icons_data.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/dialog/dialog_util.dart';
 
 abstract class MapRouteModel extends ConsumerState<MapRoute>
-    with TickerProviderStateMixin, PermissionMixin, DialogUtil {
+    with TickerProviderStateMixin, PermissionMixin, DialogUtil, RouteMixin {
   List<AnimatedMarker> markers = [];
   AnimatedMapController? animatedMapController;
   double lat = 0.0;
   double lng = 0.0;
   LatLng? location;
 
-  ValueNotifier<List<Polyline>> polyLine = ValueNotifier([]);
+  ValueNotifier<List<Polyline>> polyLine = ValueNotifier<List<Polyline>>([]);
   ValueNotifier<bool> isLoading = ValueNotifier(true);
   @override
   void initState() {
@@ -38,7 +40,14 @@ abstract class MapRouteModel extends ConsumerState<MapRoute>
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await getCurrentLocation();
-      await drawRoute();
+      List<Polyline>? poly = await drawRoute(
+          lat1: lat.toString(),
+          lng1: lng.toString(),
+          lat2: location!.latitude.toString(),
+          lng2: location!.longitude.toString());
+      if (poly != null) {
+        polyLine.value = poly;
+      }
       isLoading.value = false;
     });
     super.initState();
@@ -46,39 +55,14 @@ abstract class MapRouteModel extends ConsumerState<MapRoute>
 
   void setMarkers() {
     markers = [
-      AnimatedMarker(
-        height: 100,
-        width: 100,
-        point: LatLng(lat, lng),
-        builder: (context, animation) => const Icon(
-          IconsData.markerIcon,
-          color: ColorData.red,
-        ),
-        rotate: true,
+      CustomMarkers(
+        mapPoint: LatLng(lat, lng),
+        icon: IconsData.markerIcon,
+        color: ColorData.red,
       ),
-      AnimatedMarker(
-        height: 100,
-        width: 100,
-        point: location ?? const LatLng(0.0, 0.0),
-        builder: (context, animation) => const Icon(
-          IconsData.myLocation,
-          color: ColorData.eyeBlue,
-        ),
-      ),
-    ];
-  }
-
-  Future<void> drawRoute() async {
-    ApiService apiService = ApiService();
-    List? path = await apiService.getDirections("${location!.longitude},${location!.latitude}", "$lng,$lat");
-    if (path == null || path.isEmpty) {
-      showErrorDialog(StringData.routeError);
-      return;
-    }
-    polyLine.value = [
-      Polyline(
-        points: path.map((e) => LatLng(e[1], e[0])).toList(),
-        strokeWidth: 4.0,
+      CustomMarkers(
+        mapPoint: location ?? const LatLng(0.0, 0.0),
+        icon: IconsData.myLocation,
         color: ColorData.eyeBlue,
       ),
     ];

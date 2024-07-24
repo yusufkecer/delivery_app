@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/product/util/constants/color_data.dart';
 
-class CustomTabbar extends StatelessWidget implements PreferredSizeWidget {
+@immutable
+final class CustomTabbar extends StatelessWidget implements PreferredSizeWidget {
   final TabController? tabController;
   final List<Widget> tabsList;
 
   const CustomTabbar({
-    Key? key,
+    super.key,
     this.tabController,
     required this.tabsList,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,5 +27,5 @@ class CustomTabbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(50);
+  Size get preferredSize => const Size.fromHeight(75);
 }

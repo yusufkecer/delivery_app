@@ -12,7 +12,8 @@ import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/widgets/info_rich.dart';
 
-class CardTask extends StatefulWidget {
+@immutable
+final class CardTask extends StatefulWidget {
   final String? title;
   final String? description;
   final String distance;
