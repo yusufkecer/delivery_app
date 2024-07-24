@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rotation_app/product/util/constants/widget_size.dart';
+import 'package:rotation_app/product/util/constants/widget_sizes.dart';
 
 final class VerticalSpace extends SizedBox {
   const VerticalSpace.xLarge({super.key}) : super(height: WidgetSizes.spacingXxl12);

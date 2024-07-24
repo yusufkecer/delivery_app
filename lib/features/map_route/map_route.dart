@@ -26,7 +26,7 @@ class _MapRouteState extends MapRouteModel {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: isLoading,
-      builder: (context, value, child) => value == true ? const MyLoading() : mapWidget(),
+      builder: (context, value, child) => value == true ? const LottieLoading() : mapWidget(),
     );
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slider_button/slider_button.dart';
 
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/util/constants/colors.dart';
+import 'package:rotation_app/product/util/constants/color_data.dart';
 
 class SwipeButton extends StatelessWidget {
   final String label;
@@ -18,7 +18,6 @@ class SwipeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliderButton(
-      shimmer: true,
       alignLabel: Alignment.center,
       action: action,
       label: Text(label),
@@ -32,7 +31,6 @@ class SwipeButton extends StatelessWidget {
       radius: 10,
       buttonColor: ColorData.eyeBlue,
       backgroundColor: ColorData.ocean,
-      highlightedColor: Colors.white,
       baseColor: ColorData.deepPurple,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/util/constants/colors.dart';
+import 'package:rotation_app/product/util/constants/color_data.dart';
 
 class CustomElevated extends StatelessWidget {
   final Function()? onPressed;

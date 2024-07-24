@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:rotation_app/core/extension/key_extension.dart';
+import 'package:rotation_app/core/extension/navigation_extension.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/product/util/global/auto_route.dart';
+import 'package:rotation_app/product/util/global/route_settings.dart';
 import 'package:rotation_app/product/util/constants/asset_path.dart';
 
-class MyLoading extends StatelessWidget {
-  const MyLoading({super.key});
+class LottieLoading extends StatelessWidget {
+  const LottieLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MyLoading extends StatelessWidget {
   }
 }
 
-extension ShowLoading on MyLoading {
+extension ShowLoading on LottieLoading {
   void show<T>() {
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {

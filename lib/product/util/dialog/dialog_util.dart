@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:rotation_app/core/extension/key_extension.dart';
+import 'package:rotation_app/core/extension/navigation_extension.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/product/util/global/auto_route.dart';
+import 'package:rotation_app/product/util/dialog/basic_dialog.dart';
+import 'package:rotation_app/product/util/global/route_settings.dart';
 
 import 'package:rotation_app/product/util/constants/asset_path.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
-import 'package:rotation_app/product/util/dialog/dialog_view.dart';
 
 mixin DialogUtil {
   void showErrorDialog(String message) {

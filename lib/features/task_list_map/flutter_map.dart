@@ -21,10 +21,11 @@ class _CustomFlutterMapState extends FlutterMapModel {
     tasks = task?.taskList;
 
     return ValueListenableBuilder(
-        valueListenable: isMapLoading,
-        builder: (context, value, child) {
-          return !value ? flutterMap(value) : const MyLoading();
-        });
+      valueListenable: isMapLoading,
+      builder: (context, value, child) {
+        return !value ? flutterMap(value) : const LottieLoading();
+      },
+    );
   }
 
   FlutterMapWidget flutterMap(val) {

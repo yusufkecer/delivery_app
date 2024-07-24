@@ -8,7 +8,7 @@ import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/router/app_router.dart';
 import 'package:rotation_app/product/router/custom_route_observer.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
-import 'package:rotation_app/product/util/dialog/dialog.dart';
+import 'package:rotation_app/product/util/dialog/dialog_util.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 
 abstract class TaskDetailModel extends ConsumerState<TaskDetail> with DialogUtil, StartTask {
