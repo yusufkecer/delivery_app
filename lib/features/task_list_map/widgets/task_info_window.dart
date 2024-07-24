@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/product_constant/padding.dart';
-import 'package:rotation_app/product/product_constant/spacer/vertical_spacer.dart';
+import 'package:rotation_app/product/product_constant/project_padding.dart';
+import 'package:rotation_app/product/product_constant/spacer/vertical_space.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
-import 'package:rotation_app/product/widgets/info_window.dart';
+import 'package:rotation_app/product/widgets/info_card.dart';
+import 'package:rotation_app/product/widgets/zero_text_button.dart';
 
 class TaskInfoWindow extends StatelessWidget {
   final Task task;
@@ -43,19 +44,7 @@ class TaskInfoWindow extends StatelessWidget {
 
   Row buttons() {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      txtbttn(detailPressed, StringData.complete),
+      ZeroTextButton(pressed: detailPressed, text: StringData.complete),
     ]);
-  }
-
-  TextButton txtbttn(void Function()? pressed, String text) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.all(0.0),
-        minimumSize: Size.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      ),
-      onPressed: pressed,
-      child: Text(text),
-    );
   }
 }

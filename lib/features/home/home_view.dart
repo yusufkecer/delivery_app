@@ -1,15 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/features/home/home_view_model.dart';
+import 'package:rotation_app/features/home/widgets/custom_tabbar.dart';
 import 'package:rotation_app/features/task_list_view/task_list.dart';
 import 'package:rotation_app/features/task_list_map/flutter_map.dart';
 import 'package:rotation_app/product/notifier/task_notifier.dart';
-import 'package:rotation_app/product/util/constants/colors.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/loading/lottie_loading.dart';
-import 'package:rotation_app/product/widgets/error_widget.dart';
+import 'package:rotation_app/product/widgets/fault_widget.dart';
 
 @RoutePage()
 class HomeScreen extends ConsumerStatefulWidget {
@@ -31,7 +30,7 @@ class _HomeState extends HomeModel {
               pinned: true,
               floating: true,
               title: const Text(StringData.myTasks),
-              bottom: tabbar(context),
+              bottom: tabbar(),
             ),
           ];
         },
@@ -52,18 +51,14 @@ class _HomeState extends HomeModel {
     return ValueListenableBuilder(
         valueListenable: isLoading,
         builder: (context, value, child) {
-          return !value ? const TaskList() : const MyLoading();
+          return !value ? const TaskList() : const LottieLoading();
         });
   }
 
-  TabBar tabbar(BuildContext context) {
-    return TabBar(
-      controller: tabController,
-      indicatorColor: ColorData.white,
-      labelStyle: context.textTheme.titleMedium?.copyWith(
-        color: ColorData.white,
-      ),
-      tabs: tabsList,
+  CustomTabbar tabbar() {
+    return CustomTabbar(
+      tabController: tabController,
+      tabsList: tabsList,
     );
   }
 }

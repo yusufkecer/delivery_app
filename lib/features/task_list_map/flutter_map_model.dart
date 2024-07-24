@@ -8,8 +8,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:rotation_app/core/mixin/permission.dart';
 
 import 'package:rotation_app/features/task_list_map/flutter_map.dart';
-import 'package:rotation_app/product/util/constants/colors.dart';
-import 'package:rotation_app/product/util/constants/icons.dart';
+import 'package:rotation_app/product/util/constants/color_data.dart';
+import 'package:rotation_app/product/util/constants/icons_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'package:rotation_app/product/router/app_router.dart' as router;
 
@@ -72,13 +72,13 @@ abstract class FlutterMapModel extends ConsumerState<CustomFlutterMap> with Perm
       return;
     }
     for (var task in tasks!) {
-      double lat = double.tryParse(task.lat.toString())!;
-      double lng = double.tryParse(task.lng.toString())!;
+      final double lat = double.tryParse(task.lat.toString())!;
+      final double lng = double.tryParse(task.lng.toString())!;
       markers.add(
         AnimatedMarker(
           rotate: true,
-          width: 80.0,
-          height: 80.0,
+          width: 80,
+          height: 80,
           point: LatLng(lat, lng),
           builder: (context, animation) => GestureDetector(
             onTap: () {

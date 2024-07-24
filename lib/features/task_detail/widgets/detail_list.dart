@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:rotation_app/core/enum/task_status.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/product/product_constant/padding.dart';
-import 'package:rotation_app/product/product_constant/spacer/vertical_spacer.dart';
+import 'package:rotation_app/product/product_constant/project_padding.dart';
+import 'package:rotation_app/product/product_constant/spacer/vertical_space.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
-import 'package:rotation_app/product/widgets/text_rich.dart';
+import 'package:rotation_app/product/widgets/info_rich.dart';
 
 class DetailList extends StatelessWidget {
   final Task task;

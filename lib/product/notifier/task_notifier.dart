@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rotation_app/core/enum/task_status.dart';
 import 'package:rotation_app/core/extension/date_extension.dart';
-import 'package:rotation_app/core/extension/list_sort_multi_value.dart';
+import 'package:rotation_app/core/extension/task_sort_multi_value.dart';
 import 'package:rotation_app/product/repo/task_repo/task_repo.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 
@@ -18,7 +18,7 @@ class TaskNotifier extends _$TaskNotifier {
   List<Task> get taskList => state;
 
   Future<Map> updateTask(String id, Map<String, dynamic> body, {TaskStatus status = TaskStatus.notStarted}) async {
-    updateTaskStatus(status, id);
+    _updateTaskStatus(status, id);
 
     Map data = await _taskRepo.update(body, id);
 
@@ -32,10 +32,10 @@ class TaskNotifier extends _$TaskNotifier {
 
     state = taskList;
 
-    checkTaskStatus();
+    _checkTaskStatus();
   }
 
-  void checkTaskStatus() {
+  void _checkTaskStatus() {
     for (var element in state) {
       if (element.taskStatus == TaskStatus.inProgress) {
         ongoingTask = true;
@@ -44,11 +44,7 @@ class TaskNotifier extends _$TaskNotifier {
     }
   }
 
-  void removeTask(Task task) {
-    state = state..remove(task);
-  }
-
-  void updateTaskStatus(TaskStatus status, String id) {
+  void _updateTaskStatus(TaskStatus status, String id) {
     if (status == TaskStatus.notStarted) {
       state = state.map((element) {
         if (element.id == id) {

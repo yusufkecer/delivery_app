@@ -1,14 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:rotation_app/core/extension/key_extension.dart';
 
 import 'package:rotation_app/core/extension/logger_extension.dart';
 import 'package:rotation_app/product/service/api/api_url.dart';
-import 'package:rotation_app/product/util/global/auto_route.dart';
+import 'package:rotation_app/product/widgets/flutter_map/map_back_button.dart';
 
 class FlutterMapWidget extends StatelessWidget {
   final AnimatedMapController? animatedMapController;
@@ -47,7 +45,7 @@ class FlutterMapWidget extends StatelessWidget {
         tileLayer(),
         markerLayer(),
         infoWindow(),
-        backButton(),
+        const MapBackButton(),
         polyLayer(),
       ],
     );
@@ -78,27 +76,5 @@ class FlutterMapWidget extends StatelessWidget {
 
   void updateCameraPosition() {
     animatedMapController?.animateTo(dest: currentLocation);
-  }
-
-  Widget backButton() {
-    BuildContext? context = RoutingSettings.instance.currentContext;
-    if (backBtn == true && context != null) {
-      return Positioned(
-        top: 10,
-        left: 10,
-        child: DecoratedBox(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-          child: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => context.maybePop(),
-          ),
-        ),
-      );
-    }
-
-    return const SizedBox.shrink();
   }
 }
