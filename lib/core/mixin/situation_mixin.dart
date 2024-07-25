@@ -8,15 +8,18 @@ mixin SituationMixin {
   Map<String, dynamic> situation(TaskStatus isCompleted) {
     Color? color = ColorData.red;
     String text = StringData.notStarted;
+    String bttnText = StringData.startTask;
     IconData icon = IconsData.navigation;
     if (isCompleted == TaskStatus.inProgress) {
       color = ColorData.amber;
       text = StringData.onProgress;
+      bttnText = StringData.continueTask;
     } else if (isCompleted == TaskStatus.completed) {
       color = ColorData.green;
       text = StringData.completed;
+      bttnText = StringData.completed;
       icon = IconsData.check;
     }
-    return {"color": color, "text": text, "icon": icon};
+    return {"color": color, "text": text, "icon": icon, "bttnText": bttnText};
   }
 }

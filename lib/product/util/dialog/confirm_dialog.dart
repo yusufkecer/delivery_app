@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:rotation_app/core/extension/context_extension.dart';
-import 'package:rotation_app/product/product_constant/spacer/vertical_space.dart';
 import 'package:rotation_app/product/widgets/cuttom_elevated.dart';
 
 @immutable
-final class BasicDialog extends StatelessWidget {
-  final String asset;
+final class ConfirmDialog extends StatelessWidget {
   final String title;
   final String description;
   final String buttonText;
   final Function() onPressed;
+  final String cancelText;
+  final Function()? onCancel;
 
-  final bool? isAnimated;
-  const BasicDialog({
+  const ConfirmDialog({
     super.key,
-    required this.asset,
     required this.title,
     required this.description,
     required this.buttonText,
+    required this.cancelText,
     required this.onPressed,
-    this.isAnimated = false,
+    required this.onCancel,
   });
 
   @override
@@ -29,22 +27,18 @@ final class BasicDialog extends StatelessWidget {
       title: Column(
         children: [
           Text(title),
-          const VerticalSpace.xSmall(),
-          isAnimated == true
-              ? Lottie.asset(asset, height: 150, width: 150, repeat: false)
-              : Image.asset(
-                  asset,
-                  height: 150,
-                  width: 150,
-                ),
         ],
       ),
       content: Text(
         description,
-        textAlign: TextAlign.center,
         style: context.textTheme.titleMedium,
+        textAlign: TextAlign.center,
       ),
       actions: [
+        CustomElevated(
+          onPressed: onCancel,
+          label: cancelText,
+        ),
         CustomElevated(
           onPressed: onPressed,
           label: buttonText,

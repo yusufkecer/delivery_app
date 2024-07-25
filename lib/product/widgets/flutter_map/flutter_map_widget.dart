@@ -48,7 +48,7 @@ final class FlutterMapWidget extends StatelessWidget {
         tileLayer(),
         markerLayer(),
         infoWindow(),
-        const MapBackButton(),
+        if (backBtn ?? false) const MapBackButton(),
         polyLayer(),
       ],
     );

@@ -8,11 +8,18 @@ extension DistenanceExtension on String {
     double? value = double.tryParse(this);
 
     if (value == null) return "";
-
-    if (value > 1000) {
-      return "${double.tryParse(this)! / 1000} KM";
+    if (value < 1) {
+      return "${(value * 1000).toStringAsFixed(2)} M";
     } else {
-      return "$this M";
+      return "$this KM";
     }
+
+    //değerler km cinsinden ise
+
+    // if (value > 1000) {
+    //   return "${double.tryParse(this)!} KM";
+    // } else {
+    //   return "$this M";
+    // }
   }
 }

@@ -32,7 +32,8 @@ final class SwipeButton extends StatelessWidget {
       radius: 10,
       buttonColor: ColorData.eyeBlue,
       backgroundColor: ColorData.ocean,
-      baseColor: ColorData.deepPurple,
+      highlightedColor: ColorData.deepPurple,
+      baseColor: Colors.white,
     );
   }
 }

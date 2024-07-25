@@ -23,7 +23,7 @@ final class CardButtons extends StatelessWidget with SituationMixin {
   @override
   Widget build(BuildContext context) {
     Map status = situation(taskStatus);
-    final String text = status["text"];
+    final String text = status["bttnText"];
     final IconData icon = status["icon"];
 
     return Row(

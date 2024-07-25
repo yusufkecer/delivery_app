@@ -11,8 +11,8 @@ class CustomRouteObserver extends AutoRouteObserver {
 
   @override
   void didPush(Route route, Route? previousRoute) {
-    "pushed".warning;
     super.didPush(route, previousRoute);
     this.previousRoute = previousRoute?.settings.name;
+    previousRoute.info;
   }
 }
