@@ -1,26 +1,25 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rotation_app/core/enum/permission_type.dart';
 import 'package:rotation_app/core/extension/logger_extension.dart';
+import 'package:rotation_app/product/util/constants/string_data.dart';
+import 'package:rotation_app/product/util/dialog/dialog_util.dart';
 
-mixin PermissionMixin<T extends StatefulWidget> on State<T> {
+mixin PermissionMixin<T extends StatefulWidget> on State<T>, DialogUtil, WidgetsBindingObserver {
   PermissionStatus? permissionStatus;
   PermissionType permissionType = PermissionType.location;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getLocation();
-    });
-  }
-
   Future<Position?> getLocation() async {
-    await checkPermission();
-    if (permissionStatus == PermissionStatus.denied) {
+    await _checkPermission();
+
+    if (permissionStatus == PermissionStatus.permanentlyDenied) {
+      "permission permanently denied".info;
+      showErrorDialog(StringData.locationError, onPressed: _openSettings, dissmissable: false);
+    } else if (permissionStatus == PermissionStatus.denied) {
       "permission denied".info;
-      await requestPermission();
+      await _requestPermission();
     } else if (permissionStatus == PermissionStatus.granted) {
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       "position: $position".info;
@@ -29,17 +28,24 @@ mixin PermissionMixin<T extends StatefulWidget> on State<T> {
     return null;
   }
 
-  Future<void> requestPermission() async {
-    await checkPermission();
-    if (permissionStatus != PermissionStatus.granted) {
-      permissionStatus = await permissionType.permission.request();
-    }
-    if (permissionStatus == PermissionStatus.granted) {
-      await getLocation();
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      context.router.maybePop();
+      getLocation();
     }
   }
 
-  Future<void> checkPermission() async {
+  Future<void> _openSettings() async {
+    await openAppSettings();
+  }
+
+  Future<void> _requestPermission() async {
+    permissionStatus = await permissionType.permission.request();
+    await getLocation();
+  }
+
+  Future<void> _checkPermission() async {
     permissionStatus = await permissionType.permission.status;
   }
 }

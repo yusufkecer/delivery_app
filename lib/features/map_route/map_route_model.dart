@@ -19,7 +19,7 @@ import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/dialog/dialog_util.dart';
 
 abstract class MapRouteModel extends ConsumerState<MapRoute>
-    with TickerProviderStateMixin, PermissionMixin, DialogUtil, RouteMixin {
+    with TickerProviderStateMixin, DialogUtil, WidgetsBindingObserver, PermissionMixin, RouteMixin {
   List<AnimatedMarker> markers = [];
   AnimatedMapController? animatedMapController;
   double lat = 0.0;

@@ -32,6 +32,7 @@ final class ConfirmDialog extends StatelessWidget {
       content: Text(
         description,
         style: context.textTheme.titleMedium,
+        textAlign: TextAlign.center,
       ),
       actions: [
         CustomElevated(

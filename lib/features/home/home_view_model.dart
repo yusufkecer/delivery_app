@@ -9,7 +9,8 @@ import 'package:rotation_app/product/util/dialog/dialog_util.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 import 'home_view.dart';
 
-abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin, DialogUtil, TickerProviderStateMixin {
+abstract class HomeModel extends ConsumerState<HomeScreen>
+    with DialogUtil, WidgetsBindingObserver, PermissionMixin, TickerProviderStateMixin {
   TaskNotifier? task;
   TabController? tabController;
   List<Task> taskList = [];
@@ -36,7 +37,7 @@ abstract class HomeModel extends ConsumerState<HomeScreen> with PermissionMixin,
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       isLoading.value = true;
       await getTasks();
-      await requestPermission();
+      await getLocation();
       isLoading.value = false;
     });
 

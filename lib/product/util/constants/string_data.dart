@@ -29,6 +29,7 @@ final class StringData {
   static const String startTask = 'Göreve Başla';
   static const String startAt = 'Başlangıç Tarihi';
   static const String map = 'Harita';
+  static const String continueTask = 'Devam Et';
   static const String tasks = 'Görevler';
 
   static const String activeTaskError = 'Aktif bir göreviniz bulunmaktadır.';
@@ -47,7 +48,7 @@ final class StringData {
   static const String complete = 'Tamamla';
 
   static const String routeError = 'Yol tarifi alınamadı. Lütfen tekrar deneyin.';
-  //confirm
+
   static const String areYouSure = 'Emin misiniz?';
   static const String cancel = 'İptal';
   static const String yes = 'Evet';

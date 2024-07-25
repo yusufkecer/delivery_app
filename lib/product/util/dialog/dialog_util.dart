@@ -14,20 +14,23 @@ import 'package:rotation_app/product/util/constants/string_data.dart';
 mixin DialogUtil {
   Completer<bool?> completer = Completer();
 
-  void showErrorDialog(String message) {
+  void showErrorDialog(String message, {dissmissable = true, void Function()? onPressed, String? bttnTxt}) {
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
       throw Exception('Context is null');
     }
+    onPressed ??= pop;
+    bttnTxt ??= StringData.ok;
     showDialog(
+      barrierDismissible: dissmissable,
       context: context,
       builder: (BuildContext context) {
         return BasicDialog(
-          buttonText: StringData.ok,
+          buttonText: bttnTxt!,
           asset: AssetPath.error.image,
           title: StringData.error,
           description: message,
-          onPressed: pop,
+          onPressed: onPressed!,
         );
       },
     );
