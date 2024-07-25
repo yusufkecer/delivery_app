@@ -89,5 +89,5 @@ To get started with the Rotation App, follow these steps:
 
    ```bash
    git clone https://github.com/yusufkecer/delivery_app.git
-   cd rotation_app
+   cd delivery_app
 
