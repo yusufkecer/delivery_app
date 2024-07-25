@@ -23,7 +23,7 @@ class TaskNotifier extends _$TaskNotifier {
     Map data = await _taskRepo.update(body, id);
 
     state = [...state.sortTask];
-
+    ongoingTask = false;
     return data;
   }
 

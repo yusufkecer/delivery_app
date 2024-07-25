@@ -44,26 +44,39 @@ abstract class TaskDetailModel extends ConsumerState<TaskDetail> with DialogUtil
     }
   }
 
-  Future<bool?> swipeAction() async {
+  Future<bool> swipeAction() async {
+    bool? check = await showConfirmDialog(description: StringData.areYouSureComplete);
+    check.info;
+    if (check == true) {
+      _completeTask();
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> _completeTask() async {
     String? id = widget.task.id;
     "swipeAction".warning;
     if (id == null) {
       showGeneralError();
-      return false;
+      return;
     }
+
     Map res = await taskNotifier!.updateTask(id, {"isCompleted": "true"}, status: TaskStatus.completed);
 
     if (res["statusCode"] == 200) {
-      if (!mounted) return false;
-
-      context.router.pushAndPopUntil(
-        const HomeRoute(),
-        predicate: (route) => false,
+      if (!mounted) return;
+      showSuccessDialog(
+        StringData.successComplete,
+        onPressed: () {
+          context.router.pushAndPopUntil(
+            const HomeRoute(),
+            predicate: (route) => false,
+          );
+        },
       );
-      return true;
     } else {
       showGeneralError();
-      return false;
     }
   }
 }

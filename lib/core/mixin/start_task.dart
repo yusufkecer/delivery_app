@@ -7,7 +7,7 @@ import 'package:rotation_app/product/notifier/task_notifier.dart';
 import 'package:rotation_app/product/router/app_router.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/dialog/dialog_util.dart';
-import 'package:rotation_app/product/util/global/route_settings.dart';
+import 'package:rotation_app/product/util/global/routing_settings.dart';
 import 'package:rotation_app/product/util/models/task_model/task_model.dart';
 
 mixin StartTask on DialogUtil {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rotation_app/core/extension/navigation_extension.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
-import 'package:rotation_app/product/util/global/route_settings.dart';
+import 'package:rotation_app/product/util/global/routing_settings.dart';
 import 'package:rotation_app/product/util/constants/asset_path.dart';
 
 @immutable

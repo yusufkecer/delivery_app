@@ -75,7 +75,7 @@ abstract class MapRouteModel extends ConsumerState<MapRoute>
       return;
     }
     location = LatLng(position.latitude, position.longitude);
-    "curretn location: $location".info;
+    "current location: $location".info;
 
     setMarkers();
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rotation_app/core/theme/base_theme.dart';
 import 'package:rotation_app/product/router/custom_route_observer.dart';
-import 'package:rotation_app/product/util/global/route_settings.dart';
+import 'package:rotation_app/product/util/global/routing_settings.dart';
 import 'package:rotation_app/product/router/app_router.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
 
@@ -23,11 +23,12 @@ class MyApp extends StatelessWidget {
     AppRouter router = RoutingSettings.instance.route;
 
     return MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: router.config(
-          navigatorObservers: () => [CustomRouteObserver.instance],
-        ),
-        title: StringData.appTitle,
-        theme: ThemeManager.instance.themeData);
+      debugShowCheckedModeBanner: false,
+      routerConfig: router.config(
+        navigatorObservers: () => [CustomRouteObserver.instance],
+      ),
+      title: StringData.appTitle,
+      theme: ThemeManager.instance.themeData,
+    );
   }
 }

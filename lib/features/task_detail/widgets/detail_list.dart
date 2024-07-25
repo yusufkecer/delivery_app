@@ -53,9 +53,12 @@ final class DetailList extends StatelessWidget {
             const VerticalSpace.xSmall(),
             InfoRich(
               title: StringData.distance,
-              text: task.distance.toString().kmOrM,
+              text: task.distance!.toStringAsFixed(2).kmOrM,
             ),
-            if (task.startAt!.isNotEmpty) InfoRich(title: StringData.startAt, text: task.startAt!),
+            if (task.startAt!.isNotEmpty) ...[
+              const VerticalSpace.xSmall(),
+              InfoRich(title: StringData.startAt, text: task.startAt!)
+            ],
           ],
         ),
       ),
