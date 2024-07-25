@@ -1,7 +1,8 @@
 
 ## Delivery App
 
-A demo routing application designed for couriers to efficiently manage their tasks. Couriers can easily review, initiate, and mark their assigned tasks as complete, ensuring a streamlined and organized workflow.
+A demo routing application designed for couriers to efficiently manage their tasks. Couriers can easily review, initiate, and mark their assigned tasks as complete, ensuring a streamlined and organized workflow. The markers' positions were manually adjusted to ensure accuracy, and the backend functionality was implemented using a  [Mock API](https://mockapi.io/) for demonstration purposes.
+
 
 ![Screenshot_1721921602](https://github.com/user-attachments/assets/97141e86-890d-4da2-98ea-3eb3faee9063)
 ![Screenshot_1721921641](https://github.com/user-attachments/assets/653a203e-893d-4542-b097-b8505fb40809)
