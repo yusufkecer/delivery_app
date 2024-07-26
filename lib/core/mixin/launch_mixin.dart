@@ -11,7 +11,7 @@ mixin LaunchMixin {
     if (await canLaunchUrl(phoneLaunch)) {
       await launchUrl(phoneLaunch);
     } else {
-      "Could not launch $phoneLaunch".logError;
+      "$phoneLaunch".logError;
     }
   }
 }

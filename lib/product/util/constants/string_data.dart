@@ -55,4 +55,11 @@ final class StringData {
   static const String areYouSureComplete = "Görevi tamamlamak istediğinize emin misiniz?";
 
   static const String successComplete = 'Görev başarıyla tamamlandı.';
+  static const String contextNull = 'Context is null';
+
+  static const String permissionDenied = 'İzin reddedildi.';
+  static const String permissionPermanentlyDenied = 'İzin kalıcı olarak reddedildi.';
+  static const String permissionGranted = 'İzin verildi.';
+
+  static const String location = 'Konum';
 }

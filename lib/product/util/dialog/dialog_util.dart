@@ -17,7 +17,7 @@ mixin DialogUtil {
   void showErrorDialog(String message, {dissmissable = true, void Function()? onPressed, String? bttnTxt}) {
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
-      throw Exception('Context is null');
+      throw Exception(StringData.contextNull);
     }
     onPressed ??= pop;
     bttnTxt ??= StringData.ok;
@@ -39,7 +39,7 @@ mixin DialogUtil {
   void showGeneralError() {
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
-      throw Exception('Context is null');
+      throw Exception(StringData.contextNull);
     }
     showDialog(
       context: context,
@@ -58,7 +58,7 @@ mixin DialogUtil {
   void showSuccessDialog(String message, {void Function()? onPressed}) {
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
-      throw Exception('Context is null');
+      throw Exception(StringData.contextNull);
     }
     onPressed ??= pop;
     showDialog(
@@ -88,7 +88,7 @@ mixin DialogUtil {
     onConfirm ??= confirm;
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
-      throw Exception('Context is null');
+      throw Exception(StringData.contextNull);
     }
     await showDialog(
       context: context,

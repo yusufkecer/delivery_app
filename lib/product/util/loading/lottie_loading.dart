@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rotation_app/core/extension/navigation_extension.dart';
 import 'package:rotation_app/core/extension/string_extension.dart';
+import 'package:rotation_app/product/util/constants/string_data.dart';
 import 'package:rotation_app/product/util/global/routing_settings.dart';
 import 'package:rotation_app/product/util/constants/asset_path.dart';
 
@@ -26,7 +27,7 @@ extension ShowLoading on LottieLoading {
   void show<T>() {
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
-      throw Exception('Context is null');
+      throw Exception(StringData.contextNull);
     }
     showDialog<T>(
       context: context,
@@ -39,7 +40,7 @@ extension ShowLoading on LottieLoading {
   void hide<T>() {
     BuildContext? context = RoutingSettings.instance.currentContext;
     if (context == null) {
-      throw Exception('Context is null');
+      throw Exception(StringData.contextNull);
     }
     Navigator.of(context).pop<T>(null);
   }

@@ -5,6 +5,7 @@ import 'package:rotation_app/core/mixin/situation_mixin.dart';
 import 'package:rotation_app/product/util/constants/color_data.dart';
 import 'package:rotation_app/product/util/constants/icons_data.dart';
 import 'package:rotation_app/product/util/constants/string_data.dart';
+import 'package:rotation_app/product/util/models/situation_model.dart';
 import 'package:rotation_app/product/widgets/cuttom_elevated.dart';
 
 @immutable
@@ -22,9 +23,9 @@ final class CardButtons extends StatelessWidget with SituationMixin {
 
   @override
   Widget build(BuildContext context) {
-    Map status = situation(taskStatus);
-    final String text = status["bttnText"];
-    final IconData icon = status["icon"];
+    SituationModel status = situation(taskStatus);
+    final String text = status.bttnText;
+    final IconData icon = status.icon;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

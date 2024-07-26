@@ -15,14 +15,14 @@ mixin PermissionMixin<T extends StatefulWidget> on State<T>, DialogUtil, Widgets
     await _checkPermission();
 
     if (permissionStatus == PermissionStatus.permanentlyDenied) {
-      "permission permanently denied".info;
+      StringData.permissionPermanentlyDenied.info;
       showErrorDialog(StringData.locationError, onPressed: _openSettings, dissmissable: false);
     } else if (permissionStatus == PermissionStatus.denied) {
-      "permission denied".info;
+      StringData.permissionDenied.info;
       await _requestPermission();
     } else if (permissionStatus == PermissionStatus.granted) {
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      "position: $position".info;
+      "${StringData.location} $position".info;
       return position;
     }
     return null;
