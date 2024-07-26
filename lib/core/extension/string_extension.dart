@@ -13,13 +13,5 @@ extension DistenanceExtension on String {
     } else {
       return "$this KM";
     }
-
-    //değerler km cinsinden ise
-
-    // if (value > 1000) {
-    //   return "${double.tryParse(this)!} KM";
-    // } else {
-    //   return "$this M";
-    // }
   }
 }
